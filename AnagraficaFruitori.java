@@ -5,7 +5,7 @@ import java.util.*;
 
 public class AnagraficaFruitori 
 {
-     private static Vector <Fruitore> elencoFruitori;
+     private Vector <Fruitore> elencoFruitori;
      
      public static final String INTESTAZIONE_ELENCO = "Elenco degli attuali fruitori: \n";
      public static final int DIECI_GIORNI = 10;
@@ -70,10 +70,10 @@ public class AnagraficaFruitori
      
      /*
       * Avevamo fatto nello stesso modo nel progetto di Serina. Nella classe Operatore il metodo visualizzaElencoFruitori
-      * avrà come parametro un oggetto di tipo elencoFruitori; su questo invoca il toString definito qui sotto.
+      * avrÃ  come parametro un oggetto di tipo elencoFruitori; su questo invoca il toString definito qui sotto.
       * 
       */
-     public String toString()		// Dichiarazione statica + ho cambiato il nome del metodo perch� entrava in conflitto con il toString() della classe String
+     public String toString()		// Dichiarazione statica + ho cambiato il nome del metodo perchè entrava in conflitto con il toString() della classe String
      {
     	    StringBuffer ris = new StringBuffer();
     	    ris.append(INTESTAZIONE_ELENCO);
