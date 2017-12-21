@@ -8,7 +8,7 @@ public class Fruitore
      private String cognome;
      private LocalDate dataDiNascita;
      private String username;
-     private int password;              //la password la gestiamo come int... va bene?
+     private String password;              //la password la gestiamo come int... va bene?
      private LocalDate dataDiIscrizione;		//gestione date come oggetti LocalDate
      private LocalDate dataDiScadenza;
      
@@ -20,7 +20,7 @@ public class Fruitore
       *  con la data acquisita dal sistema e facciamo il controllo.
       */
      
-     public Fruitore(String nome, String cognome, LocalDate dataDiNascita, String username, int password)
+     public Fruitore(String nome, String cognome, LocalDate dataDiNascita, String username, String password)
      {
     	     this.nome = nome;
     	     this.cognome = cognome;
