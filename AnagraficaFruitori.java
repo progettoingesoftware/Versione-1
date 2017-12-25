@@ -61,7 +61,7 @@ public class AnagraficaFruitori
     	   {
     		   Fruitore f = elencoFruitori.get(i);
     		   
-    		   if((f.getNome()).equalsIgnoreCase(n) && (f.getCognome().equalsIgnoreCase(c)) && (f.getDataDiNascita().equals(dn)))
+    		   if((f.getNome()).equalsIgnoreCase(n) && (f.getCognome().equalsIgnoreCase(c)) && (f.getDataDiNascita().isEquals(dn)))
                  return true;
     	   }
     	   
