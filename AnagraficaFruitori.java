@@ -12,7 +12,7 @@ import java.util.*;
 public class AnagraficaFruitori 
 {
 	/**
-	 * L'attributo privato assegnato alla classe AnagraficaFruitori Ë il vettore contenente le caratteristiche dei vari fruitori che aderiscono al servizio
+	 * L'attributo privato assegnato alla classe AnagraficaFruitori √® il vettore contenente le caratteristiche dei vari fruitori che aderiscono al servizio
 	 */
 	private Vector <Fruitore> elencoFruitori;
     
@@ -25,11 +25,6 @@ public class AnagraficaFruitori
      * Costante numerica intera che specifica il numero di giorni antecedenti la data di scadenza
      */
     public static final int DIECI_GIORNI = 10;
-    
-    /**
-     * Costante numerica intera che specifica il periodo di validit‡ del servizio
-     */
-	public static final int TERMINE_SCADENZA = 5;
 	
     /**
      * Metodo costruttore della classe AnagraficaFruitori
@@ -52,7 +47,7 @@ public class AnagraficaFruitori
     }
     
     /**
-     * Metodo che verifica se il fruitore che intende iscriversi ha contemporaneamente lo stesso nome, lo stesso cognome e la stessa data di nascita di almeno uno dei fruitori gi‡ iscritti
+     * Metodo che verifica se il fruitore che intende iscriversi ha contemporaneamente lo stesso nome, lo stesso cognome e la stessa data di nascita di almeno uno dei fruitori gi√† iscritti
      * 
      * @param n : nome del nuovo fruitore
      * @param c : cognome del nuovo fruitore
@@ -74,11 +69,11 @@ public class AnagraficaFruitori
     }
     
     /**
-     * Metodo che verifica se il fruitore che intende iscriversi ha lo stesso username di almeno uno dei fruitori gi‡ iscritti
+     * Metodo che verifica se il fruitore che intende iscriversi ha lo stesso username di almeno uno dei fruitori gi√† iscritti
      * 
      * @param u : username del nuovo fruitore
      * 
-     * @return boolean : true se la condizione di uguaglianza Ë verificata
+     * @return boolean : true se la condizione di uguaglianza √® verificata
      */
     public boolean verificaStessoUsername(String u) 
     {
@@ -94,12 +89,12 @@ public class AnagraficaFruitori
     }
     
     /**
-     * Metodo che verifica se l'utente, identificato tramite lo username e la password, Ë presente nell'elenco dei fruitori gi‡ iscritti
+     * Metodo che verifica se l'utente, identificato tramite lo username e la password, √® presente nell'elenco dei fruitori gi√† iscritti
      * 
      * @param u : username identificativo del fruitore
      * @param p : password del fruitore
      * 
-     * @return boolean : true se l'utente Ë gi‡ presente nell'elenco dei fruitori
+     * @return boolean : true se l'utente √® gi√† presente nell'elenco dei fruitori
      */
     public boolean accedi(String u, String p)
     {
@@ -115,7 +110,7 @@ public class AnagraficaFruitori
     }
     
     /**
-     * Metodo che verifica se la data corrente Ë successiva rispetto alla data di scadenza del servizio prevista per uno specifico fruitore;
+     * Metodo che verifica se la data corrente √® successiva rispetto alla data di scadenza del servizio prevista per uno specifico fruitore;
      * in tal caso procede con la rimozione del suddetto fruitore dall'elenco dei fruitori iscritti
      * 
      * @return void
@@ -133,12 +128,12 @@ public class AnagraficaFruitori
     }
     
     /**
-     * Metodo che verifica se la data corrente Ë compresa nel periodo tra i dieci giorni antecedenti la data di scadenza del servizio (prevista per uno specifico fruitore) e la stessa data di scadenza;
+     * Metodo che verifica se la data corrente √® compresa nel periodo tra i dieci giorni antecedenti la data di scadenza del servizio (prevista per uno specifico fruitore) e la stessa data di scadenza;
      * in tal caso procede con la modifica della data di scadenza del suddetto fruitore aggiornandola con la data corrente
      * 
      * @param u : username del fruitore
      * 
-     * @return boolean : true se la condizione indicata Ë verificata
+     * @return boolean : true se la condizione indicata √® verificata
      */  
     public boolean rinnovoIscrizioneFruitore(String u)
     {
@@ -156,7 +151,7 @@ public class AnagraficaFruitori
    	 				if((LocalDate.now().isBefore(f.getDataDiScadenza())))
    	 				{
        	 				if((LocalDate.now().isAfter(f.getDataDiScadenza().minusDays(DIECI_GIORNI))))
-   	 							f.setDataDiScadenza(LocalDate.now().plusYears(TERMINE_SCADENZA));
+   	 							f.setDataDiScadenza(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA));
        	 						return true;
    	 				}
    	 			}		
