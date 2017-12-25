@@ -7,7 +7,7 @@ public class Menu
     
     public static final String ISCRIZIONE_AVVENUTA = "Complimenti, iscrizione avvenuta con successo!\n";
 
-    public static final String SCELTA_MODALITA = "In quale modalit‡ vuoi accedere?\n";
+    public static final String SCELTA_MODALITA = "In quale modalit√† vuoi accedere?\n";
     public static final String SCELTA_AZIONE = "Cosa vuoi fare?\n";
     public static final String INSERIMENTO_NOME = "Inserisci il tuo nome\n";
     	
@@ -26,7 +26,7 @@ public class Menu
 	     System.out.println(ISCRIZIONE_AVVENUTA);
     }
     
-    public static String mostraMenuSceltaModalita()
+    public static String mostraMenuB()
     {
     	 return (SCELTA_MODALITA + "1 - Fruitore\n" + "2 - Operatore\n" + "3 - Esci\n");
 	   /*  System.out.println(SCELTA_MODALITA);
@@ -35,15 +35,15 @@ public class Menu
 	     System.out.println("3 - Esci"); */
     }
     
-    public static int eseguiMenuSceltaModalita()
+    public static int eseguiMenuB()
     {	 
-    	 int comando = InputDati.leggiIntero(mostraMenuSceltaModalita(), 1, 3);
+    	 int comando = InputDati.leggiIntero(mostraMenuB(), 1, 3);
     	 
     	 return comando;
     	 /*
     	 switch(comando)
     	 {
-    	 	case 1: mostraMenuSceltaAzione();
+    	 	case 1: mostraMenuC();
     	 			break;
     	 	case 2: //da definire
     	 	
@@ -53,11 +53,11 @@ public class Menu
     	 
     }
     
-    public static void selettoreMenuSceltaModalita(int scelta)
+    public static void selettoreMenuC(int scelta)
     {
    	 		switch(scelta)
    	 		{
-   	 			case 1: mostraMenuSceltaAzioneFruitore();
+   	 			case 1: mostraMenuC();
    	 					break;
    	 			case 2: //da definire (mostra menuSceltaAzioneOperatore
    	 	
@@ -66,12 +66,12 @@ public class Menu
    	 		}
     }
     
-    public static String mostraMenuSceltaAzioneFruitore()
+    public static String mostraMenuC()
     {
-    		return (SCELTA_AZIONE + "1 - Iscriviti come nuovo Fruitore\n" + "2 - Accedi se sei gi‡ iscritto\n" + "3 - Ritorna al men˘ precedente\n");
+    		return (SCELTA_AZIONE + "1 - Iscriviti come nuovo Fruitore\n" + "2 - Accedi se sei gi√† iscritto\n" + "3 - Ritorna al men√π precedente\n");
     }
     
-    public static int eseguiMenuSceltaAzioneFruitore()
+    public static int eseguiMenuC()
     {	 
     	 int comando = InputDati.leggiIntero(mostraMenuSceltaAzioneFruitore(), 1, 3);
     	 
@@ -89,7 +89,7 @@ public class Menu
     	 
     }
     
-    public static void selettoreMenuSceltaAzioneFruitore(int scelta)
+    public static void selettoreMenuC(int scelta)
     {
    	 		switch(scelta)
    	 		{
