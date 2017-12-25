@@ -1,39 +1,93 @@
 package it.ing.sw;
 
-import java.time.*;
+/**
+ * Importazione della classe necessaria per la gestione delle date
+ */
+import java.time.LocalDate;
 
+/**
+ * Questa classe rappresenta il modello di un Fruitore
+ */
 public class Fruitore 
 {
-     private String nome;
+	 /**
+	  * Gli attributi privati assegnati alla classe Fruitore sono il nome, il cognome, lo username e la password.
+	  * Vengono inoltre definite la data di nascita, quella relativa al momento in cui viene effettuata l'iscrizione e quella che indica la scadenza del servizio;
+	  * tali date sono gestite attraverso l'uso della classe LocalDate
+	  */
+	 private String nome;
      private String cognome;
      private LocalDate dataDiNascita;
      private String username;
-     private String password;              //la password la gestiamo come int... va bene?
-     private LocalDate dataDiIscrizione;		//gestione date come oggetti LocalDate
+     private String password;              
+     private LocalDate dataDiIscrizione;		
      private LocalDate dataDiScadenza;
      
-     public static final String DESCRIZIONE_FRUITORE = "\nNome: %s\nCognome: %s\nData di nascita: %??\nUsername: %s\nPassword: %d\nData di iscrizione: %??";
- 	 public static final int TERMINE_SCADENZA = 5;
-     
-     /*  Bisogna controllare che il cittadino che vuole diventare fruitore sia maggiorenne; direi di farlo nel main
-      *  o in una classe di utilit√†, al momento dell'input. Quando l'utente inserisce la sua data di nascita, la confrontiamo 
-      *  con la data acquisita dal sistema e facciamo il controllo.
+     /**
+      * Costante stringa identificativa del fruitore
       */
+     public static final String DESCRIZIONE_FRUITORE = "\nNome: %s\nCognome: %s\nData di nascita: %??\nUsername: %s\nPassword: %d\nData di iscrizione: %??";
+ 	 
+     /**
+      * Costante numerica intera che specifica il periodo di validit‡ del servizio
+      */
+     public static final int TERMINE_SCADENZA = 5;
      
-     public Fruitore(String nome, String cognome, LocalDate dataDiNascita, String username, String password)
+     /**
+      * Metodo costruttore della classe Fruitore
+      * 
+      * @param n : nome del fruitore
+      * @param c : cognome del fruitore
+      * @param dn : data di nascita del fruitore
+      * @param u : username del fruitore
+      * @param p : password del fruitore
+      */     
+     public Fruitore(String n, String c, LocalDate dn, String u, String p)
      {
-    	     this.nome = nome;
-    	     this.cognome = cognome;
-    	     this.dataDiNascita = dataDiNascita;
-    	     this.username = username;
-    	     this.password = password;
+    	     this.nome = n;
+    	     this.cognome = c;
+    	     this.dataDiNascita = dn;
+    	     this.username = u;
+    	     this.password = p;
+    	     
+    	     /**
+    	      * L'attributo dataDiIscrizione assume il valore restituito dal metodo now() della classe LocalDate;
+    	      * tale valore Ë costituito dalla data in cui viene effettuata tale invocazione ottenuta attraverso l'orologio di sistema
+    	      */
     	     this.dataDiIscrizione = LocalDate.now();
+    	     
+    	     /**
+    	      * L'attributo dataDiScadenza assume il valore indicato dalla data di iscrizione incrementata di un periodo di 5 anni
+    	      */
     	     this.dataDiScadenza = dataDiIscrizione.plusYears(TERMINE_SCADENZA);
+     }
+     
+     /**
+      * Metodi get per il ritorno dei vari attributi della classe Fruitore
+      */
+     public String getNome()
+     {
+    	     return nome;
+     }
+     
+     public String getCognome()
+     {
+    	     return cognome;
+     }
+     
+     public LocalDate getDataDiNascita()
+     {
+    	     return dataDiNascita;
      }
      
      public String getUsername()
      {
     	     return username;
+     }
+     
+     public String getPassword()
+     {
+    	     return password;
      }
      
      public LocalDate getDataDiIscrizione()
@@ -46,17 +100,22 @@ public class Fruitore
     	     return dataDiScadenza;
      }
      
-     public void setDataDiScadenza(LocalDate nuovaDataDiScadenza)
+     /**
+      * Metodo set per la modifica della data di scadenza del servizio
+      * 
+      * @param nuovads : data di scadenza aggiornata
+      * 
+      * @return void
+      */
+     public void setDataDiScadenza(LocalDate nuovads)
      {
-    	 	 dataDiScadenza = nuovaDataDiScadenza;
+    	 	 dataDiScadenza = nuovads;
      }
      
-     
-     
-     /*
-      * Ritorna una stringa con la descrizione del fruitore. Va bene stampare tutti gli attributi del fruitore
-      * oppure sarebbe meglio selezionarne solo alcuni come nome, cognome e username?
+     /**
+      * Metodo toString() ereditato dalla classe String per la creazione di una stringa descrittiva contenente i vari attributi dell'oggetto Fruitore
       * 
+      * @return String
       */
      public String toString()
      {
@@ -64,8 +123,5 @@ public class Fruitore
     	    ris.append(String.format( DESCRIZIONE_FRUITORE, nome, cognome, dataDiNascita, username, password, dataDiIscrizione));
     	    return ris.toString();
      }
-     
-     
-     
-     
+    
 }
