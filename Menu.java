@@ -89,12 +89,12 @@ public class Menu
     	 
     }
     
-    public static void selettoreMenuC(int scelta)
+    public static void selettoreMenuC(int scelta, AnagraficaFruitori af)
     {
    	 		switch(scelta)
    	 		{
    	 			case 1: Fruitore nuovo = iscrizione();
-   	 					AnagraficaFruitori.aggiungiFruitore;
+   	 					af.aggiungiFruitore();
    	 					mostraMessaggioIscrizioneAvvenuta();
    	 					break;
    	 			case 2: //da definire (mostra menuSceltaAzioneOperatore
