@@ -4,17 +4,17 @@ public class Versione_1_Main {
 
 	public static void main(String[] args) 
 	{
-		 AnagraficaFruitori Archivio = new AnagraficaFruitori();
+		AnagraficaFruitori Archivio = new AnagraficaFruitori();
 		 
 	     Menu.mostraSalutoIniziale();
 	     
-	     int scelta = Menu.eseguiMenuSceltaModalita(); //viene eseguito tutto nella classe Menu
+	     int scelta = Menu.eseguiMenuB();
 	     
-	     Menu.selettoreMenuSceltaModalita(scelta);
+	     Menu.selettoreMenuB(scelta);
 	     
-	     scelta = Menu.eseguiMenuSceltaAzioneFruitore();
+	     scelta = Menu.eseguiMenuC();
 	     
-	     Menu.selettoreMenuSceltaAzioneFruitore(scelta);
+		Menu.selettoreMenuC(scelta);
 	     
 	     
 	}
