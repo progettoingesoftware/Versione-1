@@ -1,13 +1,7 @@
 package it.ing.sw;
 
-/**
- * Questa classe rappresenta il modello di un Operatore
- */
 public class Operatore 
 {
-	/**
-	 * Gli attributi privati assegnati alla classe Operatore sono il nome, il cognome e la password
-	 */
 	private String nome;
     private String cognome;
     private String password;
@@ -19,11 +13,15 @@ public class Operatore
      * @param c : cognome dell'operatore
      * @param p : password dell'operatore
      */
+    
     public Operatore(String n, String c, String p)
     {
-   	     this.nome = n;
-   	     this.cognome = c;
-   	     this.password = p;
+    		assert n != "" : "Errore inserimento nome";
+   		this.nome = n;
+   	     	assert c != "" : "Errore inserimento cognome";
+   	    this.cognome = c;
+   	        assert p != "" : "Errore inserimento password";
+   	    this.password = p;
     }
     
     /**
@@ -35,7 +33,8 @@ public class Operatore
      */
     public void visualizzaElencoFruitori(AnagraficaFruitori e)
     {
-   	     System.out.println(e.toString());
+    		assert (e != null) : "Errore";
+    	System.out.println(e.toString());
     }
     
 }

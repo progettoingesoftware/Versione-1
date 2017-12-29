@@ -1,29 +1,13 @@
 package it.ing.sw;
 
-/**
- * Importazione delle classi necessarie per la gestione delle date e per l'interazione con l'utente
- */
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- * Questa classe gestisce la raccolta dati dei vari fruitori e permette il controllo e la verifica di specifiche condizioni necessarie per il mantenimento e l'aggiornamento dei dati
- */
 public class AnagraficaFruitori 
 {
-	/**
-	 * L'attributo privato assegnato alla classe AnagraficaFruitori √® il vettore contenente le caratteristiche dei vari fruitori che aderiscono al servizio
-	 */
 	private Vector <Fruitore> elencoFruitori;
-    
-    /**
-     * Costante stringa che permette l'intestazione dell'elenco dei fruitori
-     */
+
     public static final String INTESTAZIONE_ELENCO = "Elenco degli attuali fruitori: \n";
-    
-    /**
-     * Costante numerica intera che specifica il numero di giorni antecedenti la data di scadenza
-     */
     public static final int DIECI_GIORNI = 10;
 	
     /**
@@ -32,8 +16,9 @@ public class AnagraficaFruitori
     public AnagraficaFruitori()
     {
    	    elencoFruitori = new Vector <Fruitore> ();
+   	    	assert (elencoFruitori != null) : "Errore";
     }
-    
+
     /**
      * Metodo che permette l'aggiunta di un fruitori all'elenco dei fruitori
      * 
@@ -43,11 +28,12 @@ public class AnagraficaFruitori
      */
     public void aggiungiFruitore(Fruitore f)  
     {
-   	    elencoFruitori.add(f);
+    	elencoFruitori.add(f);
+    		assert elencoFruitori.contains(f) : "Errore";
     }
     
     /**
-     * Metodo che verifica se il fruitore che intende iscriversi ha contemporaneamente lo stesso nome, lo stesso cognome e la stessa data di nascita di almeno uno dei fruitori gi√† iscritti
+     * Metodo che verifica se il fruitore che intende iscriversi ha contemporaneamente lo stesso nome, lo stesso cognome e la stessa data di nascita di almeno uno dei fruitori gi‡ iscritti
      * 
      * @param n : nome del nuovo fruitore
      * @param c : cognome del nuovo fruitore
@@ -57,11 +43,13 @@ public class AnagraficaFruitori
      */
     public boolean verificaOmonimiaFruitori(String n, String c, LocalDate dn)
     {
+	    		assert (elencoFruitori != null) : "Errore";
     	   for(int i = 0; i < elencoFruitori.size(); i++)
     	   {
     		   Fruitore f = elencoFruitori.get(i);
+    		   		assert elencoFruitori.contains(f) : "Errore";
     		   
-    		   if((f.getNome()).equalsIgnoreCase(n) && (f.getCognome().equalsIgnoreCase(c)) && (f.getDataDiNascita().isEquals(dn)))
+    		   if((f.getNome()).equalsIgnoreCase(n) && (f.getCognome().equalsIgnoreCase(c)) && (f.getDataDiNascita().isEqual(dn)))
                  return true;
     	   }
     	   
@@ -69,18 +57,20 @@ public class AnagraficaFruitori
     }
     
     /**
-     * Metodo che verifica se il fruitore che intende iscriversi ha lo stesso username di almeno uno dei fruitori gi√† iscritti
+     * Metodo che verifica se il fruitore che intende iscriversi ha lo stesso username di almeno uno dei fruitori gi‡ iscritti
      * 
      * @param u : username del nuovo fruitore
      * 
-     * @return boolean : true se la condizione di uguaglianza √® verificata
+     * @return boolean : true se la condizione di uguaglianza Ë verificata
      */
     public boolean verificaStessoUsername(String u) 
     {
+			assert (elencoFruitori != null) : "Errore";
    	    for(int i = 0; i < elencoFruitori.size() ; i++)
    	    {
    	       Fruitore f = elencoFruitori.get(i);
-   	    	   
+	   				assert elencoFruitori.contains(f) : "Errore";
+	   				
    	    	   if((f.getUsername()).equals(u))
    	    		      return true;
    	    }
@@ -98,10 +88,12 @@ public class AnagraficaFruitori
      */
     public boolean accedi(String u, String p)
     {
+				assert (elencoFruitori != null) : "Errore";
     	    for(int i = 0; i < elencoFruitori.size(); i++)
     	    {
     	    	  Fruitore f = elencoFruitori.get(i);
-    	    	  
+    	    	  		assert elencoFruitori.contains(f) : "Errore";
+    	    	  	
     	    	  if((f.getUsername()).equals(u) && (f.getPassword().equals(p)))
     	    			   return true;
     	    }
@@ -110,37 +102,45 @@ public class AnagraficaFruitori
     }
     
     /**
-     * Metodo che verifica se la data corrente √® successiva rispetto alla data di scadenza del servizio prevista per uno specifico fruitore;
+     * Metodo che verifica se la data corrente Ë successiva rispetto alla data di scadenza del servizio prevista per uno specifico fruitore;
      * in tal caso procede con la rimozione del suddetto fruitore dall'elenco dei fruitori iscritti
      * 
      * @return void
      */
     public void decadenzaFruitore()
     {
+			assert (elencoFruitori != null) : "Errore";
    	 	for(int i = 0; i < elencoFruitori.size() ; i++)
    	 	{
    	 		Fruitore f = elencoFruitori.get(i);	
-   	 		
+   	 				assert elencoFruitori.contains(f) : "Errore";
+   	 				
    	 		if((LocalDate.now().isAfter(f.getDataDiScadenza())))
-	    	 			elencoFruitori.remove(f);    	    	 			
+   	 		{
+   	 			elencoFruitori.remove(f); 
+   	 				assert elencoFruitori.contains(f) == false : "Operazione non completata";
+   	 		}
+   	 		
    	 	}
 	   
     }
     
     /**
-     * Metodo che verifica se la data corrente √® compresa nel periodo tra i dieci giorni antecedenti la data di scadenza del servizio (prevista per uno specifico fruitore) e la stessa data di scadenza;
+     * Metodo che verifica se la data corrente Ë compresa nel periodo tra i dieci giorni antecedenti la data di scadenza del servizio (prevista per uno specifico fruitore) e la stessa data di scadenza;
      * in tal caso procede con la modifica della data di scadenza del suddetto fruitore aggiornandola con la data corrente
      * 
      * @param u : username del fruitore
      * 
-     * @return boolean : true se la condizione indicata √® verificata
+     * @return boolean : true se la condizione indicata Ë verificata
      */  
     public boolean rinnovoIscrizioneFruitore(String u)
     {
+			assert (elencoFruitori != null) : "Errore";
    	 	for(int i = 0; i < elencoFruitori.size() ; i++)
    	 	{
    	 			Fruitore f = elencoFruitori.get(i);
-   	 			
+   	 					assert elencoFruitori.contains(f) : "Errore";
+   	 					
    	 			if(f.getUsername().equals(u))
    	 			{
    	 				/**
@@ -151,8 +151,12 @@ public class AnagraficaFruitori
    	 				if((LocalDate.now().isBefore(f.getDataDiScadenza())))
    	 				{
        	 				if((LocalDate.now().isAfter(f.getDataDiScadenza().minusDays(DIECI_GIORNI))))
-   	 							f.setDataDiScadenza(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA));
-       	 						return true;
+       	 				{
+       	 					f.setDataDiScadenza(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA));
+       	 						assert f.getDataDiScadenza().isEqual(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA)) : "Operazione non completata";
+	 						return true;
+       	 				}
+   	 						
    	 				}
    	 			}		
    	 	}
@@ -166,7 +170,8 @@ public class AnagraficaFruitori
      * @return String
      */    
     public String toString()		
-    {
+    {	
+			assert (elencoFruitori != null) : "Errore";
    	    StringBuffer ris = new StringBuffer();
    	    ris.append(INTESTAZIONE_ELENCO);
    	    
