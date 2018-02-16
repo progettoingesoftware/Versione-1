@@ -31,6 +31,20 @@ public class AnagraficaFruitori
    	    elencoFruitori.add(f);
     }
     
+    
+    public Fruitore getFruitore(String u, String p)
+    {
+      	for(int i = 0; i < elencoFruitori.size(); i++)
+	    {
+	    	  Fruitore f = elencoFruitori.get(i);
+	    	  
+	    	  if((f.getUsername()).equals(u) && (f.getPassword().equals(p)))
+	    			   return f;
+	    }
+	    
+	    return null;
+    }
+    
     /**
      * Metodo che verifica se il fruitore che intende iscriversi ha contemporaneamente lo stesso nome, lo stesso cognome e la stessa data di nascita di almeno uno dei fruitori già iscritti
      * @param n : nome del nuovo fruitore

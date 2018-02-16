@@ -7,6 +7,7 @@ public class Operatore
 {
 	private String nome;
     private String cognome;
+    private String password;
     
     /**
      * Metodo costruttore della classe Operatore
