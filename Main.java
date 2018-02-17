@@ -13,15 +13,19 @@ public class Main
 
 	public static void main(String[] args) 
 	{
-        File gestoreRisorse = new File(NOME_FILE); 
-        AnagraficaFruitori anagrafica = null;
+        File gestoreRisorse = new File(NOME_FILE);
+        RaccoltaAnagrafiche ra = null;
+        AnagraficaFruitori af = null;
+        AnagraficaOperatori ao = null;
 		boolean caricamentoRiuscito = false;
 					
 		if (gestoreRisorse.exists())
 		{
 			try 
 			{
-				anagrafica = (AnagraficaFruitori)ServizioFile.caricaSingoloOggetto(gestoreRisorse);
+				ra = (RaccoltaAnagrafiche)ServizioFile.caricaSingoloOggetto(gestoreRisorse);
+				af = ra.getAnagraficaFruitori();
+				ao = ra.getAnagraficaOperatori();
 			}
 			catch (ClassCastException e)
 			{
@@ -33,7 +37,7 @@ public class Main
 			}
 			finally
 			{
-				if (anagrafica != null)
+				if (af != null && ao != null)
 				{
 					System.out.println(MSG_OK_FILE);
 					caricamentoRiuscito = true;
@@ -44,15 +48,17 @@ public class Main
 		if (!caricamentoRiuscito)				
 		{
 			System.out.println(MSG_NO_FILE);				
-			anagrafica = new AnagraficaFruitori();			
+			af = new AnagraficaFruitori();
+			ao = new AnagraficaOperatori();
 		}
 		
 		GestoreMenu g = new GestoreMenu();
-		g.logicaMenu(anagrafica);
+		g.logicaMenu(af, ao);
 		
 		//alla fine di tutto
-		System.out.println(MSG_SALVA);			
-	    ServizioFile.salvaSingoloOggetto(gestoreRisorse, anagrafica);	
+		System.out.println(MSG_SALVA);
+		ra = new RaccoltaAnagrafiche(af, ao);
+	    ServizioFile.salvaSingoloOggetto(gestoreRisorse, ra);	
 
 	}
 	

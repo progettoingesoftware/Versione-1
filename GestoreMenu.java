@@ -5,15 +5,17 @@ public class GestoreMenu
 	public static final String SALUTO_INIZIALE = "Benvenuto nell'applicazione per la gestione di risorse multimediali\n";
     public static final String SALUTO_FINALE = "Arrivederci, alla prossima!\n";
     public static final String INTESTAZIONE_A = "IN QUALE MODALITA VUOI ACCEDERE?";
-	public static final String [] OPZIONI_A = {"Fruitore", "Operatore"};
+	public static final String [] OPZIONI_A = {"Fruitore", "Operatore", "Esci"};
 	public static final String INTESTAZIONE_B = "SCEGLI UN'OPZIONE";
 	public static final String [] OPZIONI_B = {"Iscriviti come nuovo fruitore", "Accedi", "Indietro"};
-	public static final String INTESTAZIONE_C = "ACCESSO";
+	public static final String INTESTAZIONE_C = "ACCESSO FRUITORE";
 	public static final String [] OPZIONI_C = {"Inserisci username e password", "Indietro"};
 	public static final String INTESTAZIONE_D= "	COSA DESIDERI FARE?";
 	public static final String [] OPZIONI_D = {"Rinnova iscrizione", "Visualizza profilo", "Logout"};
-	public static final String INTESTAZIONE_E = "COSA DESIDERI FARE?";
-	public static final String [] OPZIONI_E = {"Visualizzare anagrafica fruitori", "Indietro"};
+	public static final String INTESTAZIONE_E = "ACCESSO OPERATORE";
+	public static final String [] OPZIONI_E = {"Inserisci username e password", "Indietro"};
+	public static final String INTESTAZIONE_F = "COSA DESIDERI FARE?";
+	public static final String [] OPZIONI_F = {"Visualizza anagrafica fruitori", "Indietro"};
 	
     public static final String ISCRIZIONE_AVVENUTA = "Complimenti, iscrizione avvenuta con successo!\n";
     public static final String INS_NOME = "Inserisci il tuo nome\n";
@@ -26,21 +28,21 @@ public class GestoreMenu
 	public static final String CREDENZIALI_ERRATE = "ATTENZIONE! Lo username e/o la password non sono validi. Riprova";
     
     
-    public Fruitore accesso(AnagraficaFruitori af)
+    public Utente accesso(Anagrafica ag)
 	{
 		String use = "";
 		String pwd = "";
 		boolean end = false;
-		Fruitore f = null;
+		Utente ut = null;
 		
 	    do
 	    {
 			use = InputDati.leggiStringaNonVuota(USERNAME);
 			pwd = InputDati.leggiStringaNonVuota(PASSWORD);
 				
-			if(af.accedi(use, pwd))
+			if(ag.accedi(use, pwd))
 			{
-				 f = af.getFruitore(use, pwd);
+				 ut = ag.getUtente(use, pwd);
 				 end = true;
 			}
 			else
@@ -48,23 +50,25 @@ public class GestoreMenu
 				
 		}while(!end);
 		
-	   return f;
+	   return ut;
 	}
     
     
     
-    public void logicaMenu(AnagraficaFruitori af)
+    public void logicaMenu(AnagraficaFruitori af, AnagraficaOperatori ao)
     {
   	   Menu a = new Menu(INTESTAZIONE_A, OPZIONI_A);
 	   Menu b = new Menu(INTESTAZIONE_B, OPZIONI_B);
 	   Menu c = new Menu(INTESTAZIONE_C, OPZIONI_C);
 	   Menu d = new Menu(INTESTAZIONE_D, OPZIONI_D);
 	   Menu e = new Menu(INTESTAZIONE_E, OPZIONI_E);
+	   Menu f = new Menu(INTESTAZIONE_F, OPZIONI_F);
     	
     	   boolean esci = false;
     	   char letteraMenu =  'a';
        int scelta = 0;
        Fruitore attualef = null;
+       Operatore attualeop = null;
        
        System.out.println(SALUTO_INIZIALE);
           
@@ -88,7 +92,7 @@ public class GestoreMenu
     	        	     
     	        	     switch(scelta)
     	        	     {
-    	        	        case 1: attualef = accesso(af);
+    	        	        case 1: attualef = (Fruitore) accesso(af);
     	        	                letteraMenu = 'd';
       	                    break;
       	        	
@@ -123,7 +127,26 @@ public class GestoreMenu
  	        	     
  	        	     switch(scelta)
  	        	     {
- 	        	        case 1: 
+ 	        	        case 1: attualeop = (Operatore) accesso(ao);
+ 	        	                letteraMenu = 'f';
+ 	        	                break;
+ 	        	                
+ 	        	        case 2: letteraMenu = 'a';
+ 	        	                break;
+ 	        	     }
+    	          }
+    	          
+    	          case('f'):
+    	          {
+    	        	     scelta = c.scegli();
+ 	        	     
+ 	        	     switch(scelta)
+ 	        	     {
+ 	        	        case 1: attualeop.visualizzaElencoFruitori(af);
+ 	        	                break;
+ 	        	                
+ 	        	        case 2: letteraMenu = 'a';
+ 	        	                break;
  	        	     }
     	          }
     	      }

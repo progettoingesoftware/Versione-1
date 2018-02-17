@@ -3,21 +3,18 @@ package it.ing.sw;
 /**
  * Questa classe rappresenta il modello di un Operatore
  */
-public class Operatore 
+public class Operatore extends Utente
 {
-	private String nome;
-    private String cognome;
-    private String password;
-    
     /**
      * Metodo costruttore della classe Operatore
      * @param n : nome dell'operatore
      * @param c : cognome dell'operatore
+     * @param u: username dell'operatore
+     * @param p: password dell'operatore
      */
-    public Operatore(String n, String c)
+    public Operatore(String n, String c, String u, String p)
     {
-   	     this.nome = n;
-   	     this.cognome = c;
+   	     super(n, c, u, p);
     }
     
     /**

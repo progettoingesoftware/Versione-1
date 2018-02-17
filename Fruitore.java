@@ -6,13 +6,9 @@ import java.time.format.DateTimeFormatter;
 /**
  * Questa classe rappresenta il modello di un Fruitore
  */
-public class Fruitore 
+public class Fruitore extends Utente
 {
-	private String nome;
-    private String cognome;
-    private LocalDate dataDiNascita;
-    private String username;
-    private String password;              
+    private LocalDate dataDiNascita;             
     private LocalDate dataDiIscrizione;		
     private LocalDate dataDiScadenza;
       
@@ -30,11 +26,8 @@ public class Fruitore
      */     
     public Fruitore(String n, String c, LocalDate dn, String u, String p)
     {
-   	     this.nome = n;
-   	     this.cognome = c;
+   	     super(n, c, u, p);
    	     this.dataDiNascita = dn;
-   	     this.username = u;
-   	     this.password = p;
    	     
    	     /**
    	      * L'attributo dataDiIscrizione assume il valore restituito dal metodo now() della classe LocalDate;
@@ -51,31 +44,11 @@ public class Fruitore
     /**
      * Metodi get per il ritorno dei vari attributi della classe Fruitore
      */
-    public String getNome()
-    {
-   	     return nome;
-    }
-    
-    public String getCognome()
-    {
-   	     return cognome;
-    }
-    
     public LocalDate getDataDiNascita()
     {
    	     return dataDiNascita;
     }
-    
-    public String getUsername()
-    {
-   	     return username;
-    }
-    
-    public String getPassword()
-    {
-   	     return password;
-    }
-    
+   
     public LocalDate getDataDiIscrizione()
     {
    	     return dataDiIscrizione;
@@ -104,7 +77,7 @@ public class Fruitore
       	StringBuffer ris = new StringBuffer();
       	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMATO_DATA);
     	    
-      	ris.append(String.format(DESCRIZIONE_FRUITORE, nome, cognome, dataDiNascita, username, password, dataDiIscrizione.format(formatter)));
+      	ris.append(String.format(DESCRIZIONE_FRUITORE, getNome(), getCognome(), dataDiNascita, getUsername(), getPassword(), dataDiIscrizione.format(formatter)));
         return ris.toString();
     }  
     
