@@ -1,24 +1,26 @@
 package it.ing.sw;
 
-import java.time.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Fruitore 
+/**
+ * Questa classe rappresenta il modello di un Fruitore
+ */
+public class Fruitore extends Utente
 {
-	private String nome;
-    private String cognome;
-    private LocalDate dataDiNascita;
-    private String username;
-    private String password;              
+    private LocalDate dataDiNascita;             
     private LocalDate dataDiIscrizione;		
     private LocalDate dataDiScadenza;
-
-    public static final String DESCRIZIONE_FRUITORE = "\nNome: %s\nCognome: %s\nData di nascita: %??\nUsername: %s\nPassword: %d\nData di iscrizione: %s";
+      
+    public static final String DESCRIZIONE_FRUITORE = "\nNome: %s\nCognome: %s\nData di nascita: %s\nUsername: %s\nPassword: %s\nData di iscrizione: %s";
     public static final int TERMINE_SCADENZA = 5;
     public static final String FORMATO_DATA = "dd/MM/yyyy";
-
+    
     /**
      * Metodo costruttore della classe Fruitore
+     * 
+     * Pre : dn != null
+     * Post : dataDiScadenza == dataDiIscrizione.plusYears(TERMINE_SCADENZA)
      * 
      * @param n : nome del fruitore
      * @param c : cognome del fruitore
@@ -26,96 +28,65 @@ public class Fruitore
      * @param u : username del fruitore
      * @param p : password del fruitore
      */     
-    public Fruitore(String n, String c, LocalDate dn, String u, String p)
+    public Fruitore(String n, String c, int an, int mn, int gn, String u, String p)
     {
-    		assert n != "" : "Errore inserimento nome";
-    	this.nome = n;
-    	    assert c != "" : "Errore inserimento cognome";
-    	this.cognome = c;
- 	 		assert dn != null : "Errore inserimento data di nascita";
-    	this.dataDiNascita = dn;
- 	 		assert u != "" : "Errore inserimento username";
-    	this.username = u;
-    	    assert p != "" : "Errore inserimento password";
-    	this.password = p;
-    	     
-    	/**
-    	 * L'attributo dataDiIscrizione assume il valore restituito dal metodo now() della classe LocalDate;
-    	 * tale valore è costituito dalla data in cui viene effettuata tale invocazione ottenuta attraverso l'orologio di sistema
-    	 */
-    	this.dataDiIscrizione = LocalDate.now();
-    	     
-    	/**
-    	 * L'attributo dataDiScadenza assume il valore indicato dalla data di iscrizione incrementata di un periodo di 5 anni
-    	 */
-    	this.dataDiScadenza = dataDiIscrizione.plusYears(TERMINE_SCADENZA);
-    		assert dataDiScadenza == dataDiIscrizione.plusYears(TERMINE_SCADENZA) : "Errore";
-     }
-     
+   	     super(n, c, u, p);
+   	     this.dataDiNascita = LocalDate.of(an, mn, gn);
+   	     
+   	     /**
+   	      * L'attributo dataDiIscrizione assume il valore restituito dal metodo now() della classe LocalDate;
+   	      * tale valore e' costituito dalla data in cui viene effettuata tale invocazione ottenuta attraverso l'orologio di sistema
+   	      */
+   	     this.dataDiIscrizione = LocalDate.now();
+   	     
+   	     /**
+   	      * L'attributo dataDiScadenza assume il valore indicato dalla data di iscrizione incrementata di un periodo di 5 anni
+   	      */
+   	     this.dataDiScadenza = dataDiIscrizione.plusYears(TERMINE_SCADENZA);
+    }
+    
     /**
      * Metodi get per il ritorno dei vari attributi della classe Fruitore
      */
-    public String getNome()
-    {
-    	return nome;
-    }
-     
-    public String getCognome()
-    {
-    	return cognome;
-    }
-     
     public LocalDate getDataDiNascita()
     {
-    	return dataDiNascita;
+   	     return dataDiNascita;
     }
-     
-    public String getUsername()
-    {
-    	return username;
-    }
-     
-    public String getPassword()
-    {
-    	return password;
-    }
-     
+   
     public LocalDate getDataDiIscrizione()
     {
-    	return dataDiIscrizione;
+   	     return dataDiIscrizione;
     }
-     
+    
     public LocalDate getDataDiScadenza()
     {
-    	return dataDiScadenza;
+   	     return dataDiScadenza;
     }
-     
+    
     /**
      * Metodo set per la modifica della data di scadenza del servizio
      * 
-     * @param nuovads : data di scadenza aggiornata
+     * Pre : nuovads.isAfter(dataDiScadenza)
+     * Post : dataDiScadenza == nuovads.plusYears(TERMINE_SCADENZA)
      * 
-     * @return void
+     * @param nuovads : data di scadenza aggiornata
      */
     public void setDataDiScadenza(LocalDate nuovads)
     {
-    		assert nuovads.isAfter(dataDiScadenza): "Data inserita non valida";
-    	dataDiScadenza = nuovads;
-    	 	assert dataDiScadenza == nuovads.plusYears(TERMINE_SCADENZA): "Operazione non completata";
+   	 	 dataDiScadenza = nuovads;
     }
-     
+    
     /**
      * Metodo toString() ereditato dalla classe String per la creazione di una stringa descrittiva contenente i vari attributi dell'oggetto Fruitore
-     * 
-     * @return String
+     * @return la stringa descrittiva
      */
     public String toString()
     {
-    	StringBuffer ris = new StringBuffer();
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMATO_DATA);
+      	StringBuffer ris = new StringBuffer();
+      	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMATO_DATA);
     	    
-    	ris.append(String.format(DESCRIZIONE_FRUITORE, nome, cognome, dataDiNascita, username, password, dataDiIscrizione.format(formatter)));
+      	ris.append(String.format(DESCRIZIONE_FRUITORE, getNome(), getCognome(), dataDiNascita.format(formatter), getUsername(), getPassword(), dataDiIscrizione.format(formatter)));
         return ris.toString();
-    }
+    }  
     
 }

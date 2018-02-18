@@ -1,40 +1,32 @@
 package it.ing.sw;
 
-public class Operatore 
+/**
+ * Questa classe rappresenta il modello di un Operatore
+ */
+public class Operatore extends Utente
 {
-	private String nome;
-    private String cognome;
-    private String password;
-    
     /**
      * Metodo costruttore della classe Operatore
-     * 
      * @param n : nome dell'operatore
      * @param c : cognome dell'operatore
+     * @param u : username dell'operatore
      * @param p : password dell'operatore
      */
-    
-    public Operatore(String n, String c, String p)
+    public Operatore(String n, String c, String u, String p)
     {
-    		assert n != "" : "Errore inserimento nome";
-   		this.nome = n;
-   	     	assert c != "" : "Errore inserimento cognome";
-   	    this.cognome = c;
-   	        assert p != "" : "Errore inserimento password";
-   	    this.password = p;
+   	     super(n, c, u, p);
     }
     
     /**
      * Metodo pubblico che permette la visualizzazione dell'elenco di Fruitori con relative caratteristiche
      * 
-     * @param e : l'oggetto indicato dove è depositato l'array di Fruitori su cui poter invocare il metodo toString()
+     * Pre : e != null
      * 
-     * @return void
+     * @param e : l'oggetto indicato dove e' depositato l'array di Fruitori su cui poter invocare il metodo toString()
      */
     public void visualizzaElencoFruitori(AnagraficaFruitori e)
     {
-    		assert (e != null) : "Errore";
-    	System.out.println(e.toString());
+   	     System.out.println(e.toString());
     }
     
 }
