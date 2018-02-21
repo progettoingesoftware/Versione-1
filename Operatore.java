@@ -1,11 +1,18 @@
 package it.ing.sw;
 
+import java.io.Serializable;
+
 /**
  * Questa classe rappresenta il modello di un Operatore
  */
-public class Operatore extends Utente
+public class Operatore extends Utente implements Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Metodo costruttore della classe Operatore
      * @param n : nome dell'operatore
      * @param c : cognome dell'operatore

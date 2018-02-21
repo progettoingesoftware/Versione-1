@@ -1,14 +1,20 @@
 package it.ing.sw;
 
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
 /**
  * Questa classe rappresenta il modello di una Anagrafica
  */
-public class Anagrafica 
+public class Anagrafica implements Serializable
 {
-    protected Vector <Utente> elenco;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	protected Vector <Utente> elenco;
     
     /**
      * Metodo costruttore della classe Anagrafica

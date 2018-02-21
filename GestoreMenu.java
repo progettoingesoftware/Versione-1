@@ -1,5 +1,6 @@
 package it.ing.sw;
 
+import java.io.Serializable;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
@@ -9,8 +10,13 @@ import java.time.LocalDate;
  * 2 - Metodi ausiliari per la gestione delle funzionalita' basilari del software (iscrizione, accesso)
  * 3 - Metodo logicaMenu per la realizzazione delle connessioni tra i vari menu'
  */
-public class GestoreMenu 
+public class GestoreMenu implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public static final String SALUTO_INIZIALE = "Benvenuto nell'applicazione per la gestione di risorse multimediali\n";
     public static final String SALUTO_FINALE = "Arrivederci, alla prossima!\n";
     public static final String INTESTAZIONE_A = "IN QUALE MODALITA VUOI ACCEDERE?";

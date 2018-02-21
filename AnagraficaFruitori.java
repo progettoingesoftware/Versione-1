@@ -1,15 +1,21 @@
 package it.ing.sw;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 /**
  * Questa classe contiene i dati dei vari fruitori e permette il controllo e la verifica di specifiche condizioni necessarie per il mantenimento e l'aggiornamento dei dati
  */
-public class AnagraficaFruitori extends Anagrafica
+public class AnagraficaFruitori extends Anagrafica implements Serializable
 {
 	
-    public static final String INTESTAZIONE_ELENCO = "Elenco degli attuali fruitori: \n";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public static final String INTESTAZIONE_ELENCO = "Elenco degli attuali fruitori: \n";
     public static final int DIECI_GIORNI = 10;
 	
     /**

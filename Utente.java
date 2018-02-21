@@ -1,11 +1,18 @@
 package it.ing.sw;
 
+import java.io.Serializable;
+
 /**
  * Questa classe rappresenta il modello di un Utente
  */
-public class Utente
+public class Utente implements Serializable
 {
-    private String nome;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private String nome;
     private String cognome;
     private String username;
     private String password;

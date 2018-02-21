@@ -1,14 +1,20 @@
 package it.ing.sw;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Questa classe rappresenta il modello di un Fruitore
  */
-public class Fruitore extends Utente
+public class Fruitore extends Utente implements Serializable
 {
-    private LocalDate dataDiNascita;             
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private LocalDate dataDiNascita;             
     private LocalDate dataDiIscrizione;		
     private LocalDate dataDiScadenza;
       
