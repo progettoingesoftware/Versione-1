@@ -119,7 +119,7 @@ public class GestoreMenu implements Serializable
 	    	}
 	    	
 			Fruitore f = null;	
-			boolean exc = true;			
+			boolean exc = false;			
 			end = true;
 			
 			/**
@@ -127,7 +127,7 @@ public class GestoreMenu implements Serializable
 			 * Nel caso in cui quest'ultima generi un'eccezione, e dunque la data inserita non sia lessicalmente corretta, viene modificata un'opportuna
 			 * variabile booleana che impedisce la fuoriuscita dal ciclo do-while fintanto che non viene digitata una data valida
 			 */
-			while(exc) {
+			while(!exc) {
 			
 				try 
 				{
@@ -140,7 +140,7 @@ public class GestoreMenu implements Serializable
 					
 					f = new Fruitore(nome, cognome, anno, mese, giorno, use, pwd);
 					
-					exc = false;
+					exc = true;
 				}
 				catch(DateTimeException e)
 				{
