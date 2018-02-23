@@ -1,37 +1,35 @@
 package it.ing.sw;
 
+import java.io.Serializable;
+
 /**
  * Questa classe rappresenta il modello di un Operatore
  */
-public class Operatore 
+public class Operatore extends Utente implements Serializable
 {
-	/**
-	 * Gli attributi privati assegnati alla classe Operatore sono il nome, il cognome e la password
-	 */
-	private String nome;
-    private String cognome;
-    private String password;
-    
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Metodo costruttore della classe Operatore
-     * 
      * @param n : nome dell'operatore
      * @param c : cognome dell'operatore
+     * @param u : username dell'operatore
      * @param p : password dell'operatore
      */
-    public Operatore(String n, String c, String p)
+    public Operatore(String n, String c, String u, String p)
     {
-   	     this.nome = n;
-   	     this.cognome = c;
-   	     this.password = p;
+   	     super(n, c, u, p);
     }
     
     /**
      * Metodo pubblico che permette la visualizzazione dell'elenco di Fruitori con relative caratteristiche
      * 
-     * @param e : l'oggetto indicato dove è depositato l'array di Fruitori su cui poter invocare il metodo toString()
+     * Pre : e != null
      * 
-     * @return void
+     * @param e : l'oggetto indicato dove e' depositato l'array di Fruitori su cui poter invocare il metodo toString()
      */
     public void visualizzaElencoFruitori(AnagraficaFruitori e)
     {
