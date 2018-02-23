@@ -10,7 +10,29 @@ public class Main
 	public static final String MSG_NO_FILE = "CARICAMENTO DA FILE NON RIUSCITO. OCCORRE CREARE UNA NUOVA LISTA UTENTI E UNA NUOVA LISTA BLOG";			
 	public static final String MSG_SALVA = "SALVATAGGIO DATI";
 	public static final String ERRORE_CONVERSIONE_DATA = "Attenzione! Si e' verificato un errore di conversione della data";	
-
+	
+	/**
+	 * Metodo per la creazione e l'aggiunta di 5 operatori preimpostati all'elenco degli operatori presente in AnagraficaOperatori
+	 * 
+	 * Pre : ao.elenco != null
+	 * 
+	 * @param ao : l'istanza della classe AnagraficaOperatore a cui aggiungere gli operatori
+	 */
+	public static void aggiuntaOperatoriPreimpostati(AnagraficaOperatori ao)
+	{
+		Operatore primo = new Operatore("Stefano", "Metelli", "ste", "161095");
+		Operatore secondo = new Operatore("Alba", "Pasini", "sum56", "33alb33");
+		Operatore terzo = new Operatore("Marco", "Bellini", "mark4", "starwars2");
+		Operatore quarto = new Operatore("Fabio", "Piccinelli", "picci", "fighter118");
+		Operatore quinto = new Operatore("Ottavia", "Lauretti", "oct4565", "ppla210");
+		
+		ao.elenco.addElement(primo);
+		ao.elenco.addElement(secondo);
+		ao.elenco.addElement(terzo);
+		ao.elenco.addElement(quarto);
+		ao.elenco.addElement(quinto);
+	}
+	
 	/**
 	 * Metodo main per l'esecuzione del software
 	 * @param args
@@ -84,28 +106,6 @@ public class Main
 		System.out.println(MSG_SALVA);
 		ra = new RaccoltaAnagrafiche(af, ao);
 	    ServizioFile.salvaSingoloOggetto(gestoreRisorse, ra);	
-	}
-	
-	/**
-	 * Metodo per la creazione e l'aggiunta di 5 operatori preimpostati all'elenco degli operatori presente in AnagraficaOperatori
-	 * 
-	 * Pre : ao.elenco != null
-	 * 
-	 * @param ao : l'istanza della classe AnagraficaOperatore a cui aggiungere gli operatori
-	 */
-	public static void aggiuntaOperatoriPreimpostati(AnagraficaOperatori ao)
-	{
-		Operatore primo = new Operatore("Stefano", "Metelli", "ste", "161095");
-		Operatore secondo = new Operatore("Alba", "Pasini", "sum56", "33alb33");
-		Operatore terzo = new Operatore("Marco", "Bellini", "mark4", "starwars2");
-		Operatore quarto = new Operatore("Fabio", "Piccinelli", "picci", "fighter118");
-		Operatore quinto = new Operatore("Ottavia", "Lauretti", "oct4565", "ppla210");
-		
-		ao.elenco.addElement(primo);
-		ao.elenco.addElement(secondo);
-		ao.elenco.addElement(terzo);
-		ao.elenco.addElement(quarto);
-		ao.elenco.addElement(quinto);
 	}
 	
 }

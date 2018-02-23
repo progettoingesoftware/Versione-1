@@ -1,8 +1,9 @@
 package it.ing.sw;
 
 import java.io.Serializable;
+
 import java.time.DateTimeException;
-import java.time.LocalDate;
+import java.time.*;
 
 /**
  * Questa classe permette una corretta gestione dell'uso dei menu'. E' essenzialmente suddivisa in tre parti:
@@ -30,27 +31,33 @@ public class GestoreMenu implements Serializable
 	public static final String INTESTAZIONE_E = "ACCESSO OPERATORE";
 	public static final String [] OPZIONI_E = {"Inserisci username e password", "Indietro"};
 	public static final String INTESTAZIONE_F = "COSA DESIDERI FARE?";
-	public static final String [] OPZIONI_F = {"Visualizza anagrafica fruitori", "Indietro"};
+	public static final String [] OPZIONI_F = {"Visualizza anagrafica fruitori", "Logout"};
 	
-    public static final String INS_NOME = "Inserisci il tuo nome\n";
-    public static final String INS_COGNOME = "Inserisci il tuo cognome\n";
-    public static final String INS_USERNAME = "Inserisci il tuo username\n";
-    public static final String INS_PASSWORD = "Inserisci la tua password\n";
-    public static final String INS_GIORNO_NASCITA = "Inserisci il tuo giorno di nascita\n";
-    public static final String INS_MESE_NASCITA = "Inserisci il tuo mese di nascita\n";
-    public static final String INS_ANNO_NASCITA = "Inserisci il tuo anno di nascita (indicare 4 cifre)\n";
+    public static final String INS_NOME = "Inserisci il tuo nome: ";
+    public static final String INS_COGNOME = "Inserisci il tuo cognome: ";
+    public static final String INS_USERNAME = "Inserisci il tuo username: ";
+    public static final String INS_PASSWORD = "Inserisci la tua password: ";
+    public static final String INS_GIORNO_NASCITA = "Inserisci il tuo giorno di nascita: ";
+    public static final String INS_MESE_NASCITA = "Inserisci il tuo mese di nascita: ";
+    public static final String INS_ANNO_NASCITA = "Inserisci il tuo anno di nascita (indicare 4 cifre): ";
 
     public static final String ISCRIZIONE_OK = "Complimenti, iscrizione avvenuta con successo!\n";
-    public static final String ISCRIZIONE_NON_OK = "ATTENZIONE! Le credenziali inserite non sono valide poiche' gia' in uso\n";
+    public static final String ISCRIZIONE_NON_OK = "Non e' stato possibile iscrivere alcun utente\n";
+    public static final String ISCRIZIONE_NON_OK_OMONIMIA_FRUITORI = "ATTENZIONE! Le credenziali inserite non sono valide poiche' gia' in uso.\n";
+    public static final String ISCRIZIONE_NON_OK_STESSO_USERNAME = "ATTENZIONE! Lo username indicato non e' valido poiche' gia' in uso.\n";
+    public static final String ISCRIZIONE_NON_OK_MAGGIORE_ETA = "ATTENZIONE! L'utente indicato non puo' iscriversi in quanto non e' maggiorenne.\n";
 
-    public static final String RINNOVO_OK = "Il rinnovo dell'iscrizione e' avvenuto con successo";
-    public static final String RINNOVO_NON_OK = "Non e' possibile effettuare il rinnovo dell'iscrizione";
+    public static final String RINNOVO_OK = "Il rinnovo dell'iscrizione e' avvenuto con successo.\n";
+    public static final String RINNOVO_NON_OK = "Non e' possibile effettuare il rinnovo dell'iscrizione.\n";
     
     public static final String USERNAME = "Username: ";
 	public static final String PASSWORD = "Password: ";
-	public static final String CREDENZIALI_ERRATE = "ATTENZIONE! Lo username e/o la password non sono validi. Riprova";
-	public static final String DATA_DI_NASCITA_ERRATA = "ATTENZIONE! La data di nascita inserita non e' valida. Riprova";
+	public static final String CREDENZIALI_ERRATE = "ATTENZIONE! Lo username e/o la password non sono validi.\n";
+	public static final String DATA_DI_NASCITA_ERRATA = "ATTENZIONE! La data di nascita inserita non e' valida.\n";
 	
+	public static final String RICHIESTA_PROSECUZIONE = "Si desidera riprovare? (S/N)\n";
+	public static final String ERRORE = "Si e' verificato un errore\n";
+
 	/**
 	 * Metodo per l'aggiunta di un nuovo fruitore all'elenco dei fruitori gia' presenti all'interno di af.
 	 * Vengono effettuati dei controlli sulla correttezza della data di nascita inserita e sulla possibile presenza di fruitori gia' iscritti in possesso delle medesime credenziali indicate
@@ -69,60 +76,134 @@ public class GestoreMenu implements Serializable
 		int giorno = 0;
 		int mese = 0;
 		int anno = 0;
-		boolean end = false;
+
+		boolean end = true;
 		
+		boolean ins_nome = true;
+		boolean ins_cognome = true;
+		boolean ins_use = true;
+		boolean ins_pwd = true;
+		boolean ins_data = true;
+		
+		/**
+		 * Ciclo globale per l'inserimento di un nuovo fruitore nel sistema in accordo con le condizioni indicate.
+		 * E' possibile suddividere tale ciclo in 4 parti:
+		 * 1 - Inserimento dei parametri richiesti
+		 * 2 - Controllo sulla correttezza lessicale della data di nascita inserita
+		 * 3 - Controlli sulle condizioni necessarie per l'iscrizione
+		 * 4 - Completamento iscrizione o richiesta di perfezionamento della stessa
+		 */
 	    do
 	    {
-			nome = InputDati.leggiStringaNonVuota(INS_NOME);
-			cognome = InputDati.leggiStringaNonVuota(INS_COGNOME);
-			use = InputDati.leggiStringaNonVuota(INS_USERNAME);
-			pwd = InputDati.leggiStringaNonVuota(INS_PASSWORD);
-			giorno = 0;
-			mese = 0;
-			anno = 0;
-			Fruitore f = null;
+	    	/**
+	    	 * Inserimento parametri
+	    	 */
+	    	if(ins_nome)
+	    	{
+				nome = InputDati.leggiStringaNonVuota(INS_NOME);
+	    	}
+	    	
+	    	if(ins_cognome)
+	    	{
+				cognome = InputDati.leggiStringaNonVuota(INS_COGNOME);
+	    	}
+	    	
+	    	if(ins_use)
+	    	{
+				use = InputDati.leggiStringaNonVuota(INS_USERNAME);
+	    	}
+	    	
+	    	if(ins_pwd)
+	    	{
+				pwd = InputDati.leggiStringaNonVuota(INS_PASSWORD);
+	    	}
+	    	
+			Fruitore f = null;	
+			boolean exc = true;			
+			end = true;
 			
-			boolean exc = false;
+			/**
+			 * Il controllo per la correttezza della data di nascita inserita viene gestito autonomamente dalla classe LocalDate.
+			 * Nel caso in cui quest'ultima generi un'eccezione, e dunque la data inserita non sia lessicalmente corretta, viene modificata un'opportuna
+			 * variabile booleana che impedisce la fuoriuscita dal ciclo do-while fintanto che non viene digitata una data valida
+			 */
+			while(exc) {
 			
-			do {
-				
-				exc = false;
-				
-				/**
-				 * Il controllo per la correttezza della data di nascita inserita viene gestito autonomamente dalla classe LocalDate.
-				 * Nel caso in cui quest'ultima generi un'eccezione, e dunque la data inserita non sia lessicalmente corretta, viene modificata un'opportuna
-				 * variabile booleana che impedisce la fuoriuscita dal ciclo do-while fintanto che non viene digitata una data valida
-				 */
 				try 
 				{
-					giorno = InputDati.leggiIntero(INS_GIORNO_NASCITA);
-					mese = InputDati.leggiIntero(INS_MESE_NASCITA);
-					anno = InputDati.leggiIntero(INS_ANNO_NASCITA);
+					if(ins_data)
+					{
+						giorno = InputDati.leggiIntero(INS_GIORNO_NASCITA);
+						mese = InputDati.leggiIntero(INS_MESE_NASCITA);
+						anno = InputDati.leggiIntero(INS_ANNO_NASCITA);
+					}
+					
 					f = new Fruitore(nome, cognome, anno, mese, giorno, use, pwd);
+					
+					exc = false;
 				}
 				catch(DateTimeException e)
 				{
 					System.out.println(DATA_DI_NASCITA_ERRATA);
-					exc = true;
 				}
 				
-			}while(exc);
+			};
+			
+			ins_nome = false;
+			ins_cognome = false;
+			ins_use = false;
+			ins_pwd = false;
+			ins_data = false;
+
+			/**
+			 * I metodi di controllo verificano se non vi sono casi di omonimia tra diversi fruitori, se non vi sono casi di condivisione di username
+			 * e se l'utente e' maggiorenne. In caso di inesattezze vengono reimpostati i parametri di inserimento e viene impedita la fuoriuscita dal ciclo globale
+			 */
+			if(af.verificaOmonimiaFruitori(f.getNome(), f.getCognome(), f.getDataDiNascita()) == true)
+			{
+				System.out.println(ISCRIZIONE_NON_OK_OMONIMIA_FRUITORI);
+				ins_nome = true;
+				ins_cognome = true;
+				ins_data = true;
+				end = false;
+			}
+			
+			if(af.verificaStessoUsername(f.getUsername()) == true)
+			{
+				System.out.println(ISCRIZIONE_NON_OK_STESSO_USERNAME);
+				ins_use = true;
+				end = false;
+			}
+			
+			if(Period.between(f.getDataDiNascita(), LocalDate.now()).getYears() < 18)
+			{
+				System.out.println(ISCRIZIONE_NON_OK_MAGGIORE_ETA);
+				ins_nome = true;
+				ins_cognome = true;
+				ins_data = true;
+				end = false;
+			}
 			
 			/**
-			 * L'iscrizione ha successo solo nel caso in cui non vi siano casi di omonimia tra diversi fruitori.
-			 * Altrimenti occorre inserire altre credenziali di accesso
+			 * Se non sono stati segnalati errori, l'iscrizione si conclude con successo.
+			 * Altrimenti, a meno che l'utente non esprima la volonta' di terminare l'operazione, si procede con le modifiche necessarie sui dati inseriti
 			 */
-			if(af.verificaOmonimiaFruitori(f.getNome(), f.getCognome(), f.getDataDiNascita()) == true || af.verificaStessoUsername(f.getUsername()) == true)
+			if(end)
 			{
-				System.out.println(ISCRIZIONE_NON_OK);
+				af.aggiungiFruitore(f);
+				System.out.println(ISCRIZIONE_OK);
 			}
 			else
 			{
-				af.aggiungiFruitore(f);
-				end = true;
-				System.out.println(ISCRIZIONE_OK);
-			}
 	
+				if(InputDati.leggiUpperChar(RICHIESTA_PROSECUZIONE, "SN") == 'N')
+				{
+					end = true;				
+					System.out.println(ISCRIZIONE_NON_OK);
+				}
+				
+			}
+			
 		}while(!end);
 	    
 	}
@@ -148,15 +229,25 @@ public class GestoreMenu implements Serializable
 	    {
 			use = InputDati.leggiStringaNonVuota(USERNAME);
 			pwd = InputDati.leggiStringaNonVuota(PASSWORD);
-			
+
+			/**
+			 * Se viene effettivamente reperito l'utente indicato, l'accesso si conclude con successo.
+			 * Altrimenti, a meno che l'utente non esprima la volonta' di terminare l'operazione, si procede con le modifiche necessarie sui dati inseriti
+			 */
 			if(ag.accedi(use, pwd))
 			{
-				 ut = ag.getUtente(use, pwd);
-				 end = true;
+				ut = ag.getUtente(use, pwd);
+				end = true;
 			}
 			else
 			{
-				 System.out.println(CREDENZIALI_ERRATE);
+				System.out.println(CREDENZIALI_ERRATE);
+				 
+				if(InputDati.leggiUpperChar(RICHIESTA_PROSECUZIONE, "SN") == 'N')
+				{
+					end = true;
+				}
+					
 			}
 	
 		}while(!end);
@@ -229,6 +320,9 @@ public class GestoreMenu implements Serializable
   	        	
 	        	        case 2: letteraMenu = 'c';
   	                    		break;
+  	                    		
+	        	        case 3: letteraMenu = 'a';
+                  				break;
 	        	    }
 	        	    
 	        	    break;
@@ -241,8 +335,18 @@ public class GestoreMenu implements Serializable
     	        	switch(scelta)
     	        	{
     	        		case 1: attualef = (Fruitore) accesso(af);
-    	        	            letteraMenu = 'd';
-    	        	            break;
+        	        	        
+    	        				if(attualef != null)
+    	        				{
+    	        					letteraMenu = 'd';
+    	        				}
+    	        				else
+    	        				{
+    	        					System.out.println(ERRORE);
+    	        					letteraMenu = 'c';
+    	        				}
+    	        				
+    	        				break;
       	        	
     	        	    case 2: letteraMenu = 'b';
       	                    	break;
@@ -283,8 +387,18 @@ public class GestoreMenu implements Serializable
  	        	    switch(scelta)
  	        	    {
  	        	    	case 1: attualeop = (Operatore) accesso(ao);
- 	        	                letteraMenu = 'f';
- 	        	                break;
+ 	        	    				
+ 	        	    			if(attualeop != null)
+ 	        	    			{
+ 	        	    				letteraMenu = 'f';
+ 	        	    			}
+ 	        	    			else
+ 	        	    			{
+ 	        	    				System.out.println(ERRORE);
+ 	        	    				letteraMenu = 'e';
+ 	        	    			}
+ 	        	    	
+ 	        	    			break;
  	        	                
  	        	        case 2: letteraMenu = 'a';
  	        	                break;
