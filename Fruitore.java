@@ -1,37 +1,47 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Questa classe rappresenta il modello di un Fruitore
  */
-public class Fruitore extends Utente
+public class Fruitore extends Utente implements Serializable
 {
-    private LocalDate dataDiNascita;             
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private LocalDate dataDiNascita;             
     private LocalDate dataDiIscrizione;		
     private LocalDate dataDiScadenza;
       
-    public static final String DESCRIZIONE_FRUITORE = "\nNome: %s\nCognome: %s\nData di nascita: %s\nUsername: %s\nPassword: %d\nData di iscrizione: %s";
+    public static final String DESCRIZIONE_FRUITORE = "\nNome: %s\nCognome: %s\nUsername: %s\nPassword: %s\nData di nascita: %s\nData di iscrizione: %s\nData di scadenza: %s\n";
     public static final int TERMINE_SCADENZA = 5;
     public static final String FORMATO_DATA = "dd/MM/yyyy";
     
     /**
      * Metodo costruttore della classe Fruitore
+     * 
+     * Pre : dn != null
+     * Post : dataDiScadenza == dataDiIscrizione.plusYears(TERMINE_SCADENZA)
+     * 
      * @param n : nome del fruitore
      * @param c : cognome del fruitore
      * @param dn : data di nascita del fruitore
      * @param u : username del fruitore
      * @param p : password del fruitore
      */     
-    public Fruitore(String n, String c, LocalDate dn, String u, String p)
+    public Fruitore(String n, String c, int an, int mn, int gn, String u, String p)
     {
    	     super(n, c, u, p);
-   	     this.dataDiNascita = dn;
+   	     this.dataDiNascita = LocalDate.of(an, mn, gn);
    	     
    	     /**
    	      * L'attributo dataDiIscrizione assume il valore restituito dal metodo now() della classe LocalDate;
-   	      * tale valore è costituito dalla data in cui viene effettuata tale invocazione ottenuta attraverso l'orologio di sistema
+   	      * tale valore e' costituito dalla data in cui viene effettuata tale invocazione ottenuta attraverso l'orologio di sistema
    	      */
    	     this.dataDiIscrizione = LocalDate.now();
    	     
@@ -61,6 +71,10 @@ public class Fruitore extends Utente
     
     /**
      * Metodo set per la modifica della data di scadenza del servizio
+     * 
+     * Pre : nuovads.isAfter(dataDiScadenza)
+     * Post : dataDiScadenza == nuovads.plusYears(TERMINE_SCADENZA)
+     * 
      * @param nuovads : data di scadenza aggiornata
      */
     public void setDataDiScadenza(LocalDate nuovads)
@@ -69,16 +83,16 @@ public class Fruitore extends Utente
     }
     
     /**
-     * Metodo toString() ereditato dalla classe String per la creazione di una stringa descrittiva contenente i vari attributi dell'oggetto Fruitore
+     * Metodo toString() per la creazione di una stringa descrittiva contenente i vari attributi dell'oggetto Fruitore
      * @return la stringa descrittiva
      */
-    public String toString()    //in sospeso per formattazione data
+    public String toString()
     {
       	StringBuffer ris = new StringBuffer();
       	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMATO_DATA);
     	    
-      	ris.append(String.format(DESCRIZIONE_FRUITORE, getNome(), getCognome(), dataDiNascita, getUsername(), getPassword(), dataDiIscrizione.format(formatter)));
+      	ris.append(String.format(DESCRIZIONE_FRUITORE, getNome(), getCognome(), getUsername(), getPassword(), dataDiNascita.format(formatter), dataDiIscrizione.format(formatter), dataDiScadenza.format(formatter)));
         return ris.toString();
-    }  
+    } 
     
 }

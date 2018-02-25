@@ -1,14 +1,20 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
 /**
  * Questa classe rappresenta il modello di una Anagrafica
  */
-public class Anagrafica 
+public class Anagrafica implements Serializable
 {
-    protected Vector <Utente> elenco;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	protected Vector <Utente> elenco;
     
     /**
      * Metodo costruttore della classe Anagrafica
@@ -21,8 +27,8 @@ public class Anagrafica
     /**
      * Metodo che restituisce l'utente avente lo username e la password uguali a quelli passati come parametri 
      * altrimenti null
-     * @param u: username dell'utente
-     * @param p: password dell'utente
+     * @param u : username dell'utente
+     * @param p : password dell'utente
      * @return l'utente con username u e password p altrimenti null
      */
     public Utente getUtente(String u, String p)
@@ -39,10 +45,13 @@ public class Anagrafica
     }
     
     /**
-     * Metodo che verifica se l'utente, identificato tramite lo username e la password, è presente nell'elenco
+     * Metodo che verifica se l'utente, identificato tramite lo username e la password, sia presente nell'elenco
+     * 
+     * Pre : elenco != null
+     * 
      * @param u : username dell'utente
      * @param p : password dell'utente
-     * @return boolean : true se l'utente è già presente nell'elenco
+     * @return boolean : true se l'utente e' gia' presente nell'elenco
      */
     public boolean accedi(String u, String p)
     {
@@ -58,3 +67,4 @@ public class Anagrafica
     }
     
 }
+

@@ -3693,7 +3693,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "RaccoltaAnagrafiche",
+											"text": "RaccoltaDati",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5724,7 +5724,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "RaccoltaAnagrafiche",
+					"name": "RaccoltaDati",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",

@@ -1,4 +1,4 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
 /**
  * Questa classe rappresenta il modello di un Utente
@@ -45,7 +45,8 @@ public class Utente
     
     public String getPassword()
     {
-   	     return password;
+    	     return password; 
     }
     
 }
+

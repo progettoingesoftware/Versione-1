@@ -1,19 +1,26 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 /**
  * Questa classe contiene i dati dei vari fruitori e permette il controllo e la verifica di specifiche condizioni necessarie per il mantenimento e l'aggiornamento dei dati
  */
-public class AnagraficaFruitori extends Anagrafica
+public class AnagraficaFruitori extends Anagrafica implements Serializable
 {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-    public static final String INTESTAZIONE_ELENCO = "Elenco degli attuali fruitori: \n";
+	public static final String INTESTAZIONE_ELENCO = "Elenco degli attuali fruitori: \n";
     public static final int DIECI_GIORNI = 10;
 	
     /**
      * Metodo costruttore della classe AnagraficaFruitori
+     * 
+     * Post : elenco != null
      */    
     public AnagraficaFruitori()
     {
@@ -22,8 +29,10 @@ public class AnagraficaFruitori extends Anagrafica
     
     /**
      * Metodo che permette l'aggiunta di un fruitore all'elenco dei fruitori
-     * @param f: l'oggetto fruitore che si desidera aggiungere
-     * @return void
+     * 
+     * Post : elenco.contains(f)
+     * 
+     * @param f : l'oggetto fruitore che si desidera aggiungere
      */
     public void aggiungiFruitore(Fruitore f)  
     {
@@ -32,10 +41,13 @@ public class AnagraficaFruitori extends Anagrafica
     
     /**
      * Metodo che verifica se il fruitore che intende iscriversi ha contemporaneamente lo stesso nome, lo stesso cognome e la stessa data di nascita di almeno uno dei fruitori già iscritti
-     * @param n: nome del nuovo fruitore
-     * @param c: cognome del nuovo fruitore
-     * @param dn: data di nascita del nuovo fruitore
-     * @return boolean: true se le condizioni di uguaglianza sono verificate
+     * 
+     * Pre : elenco != null
+     * 
+     * @param n : nome del nuovo fruitore
+     * @param c : cognome del nuovo fruitore
+     * @param dn : data di nascita del nuovo fruitore
+     * @return boolean : true se le condizioni di uguaglianza sono verificate
      */
     public boolean verificaOmonimiaFruitori(String n, String c, LocalDate dn)
     {
@@ -51,9 +63,12 @@ public class AnagraficaFruitori extends Anagrafica
     }
     
     /**
-     * Metodo che verifica se il fruitore che intende iscriversi ha lo stesso username di almeno uno dei fruitori già iscritti
+     * Metodo che verifica se il fruitore che intende iscriversi ha lo stesso username di almeno uno dei fruitori gia' iscritti
+     * 
+     * Pre : elenco != null
+     * 
      * @param u : username del nuovo fruitore
-     * @return boolean : true se la condizione di uguaglianza è verificata
+     * @return boolean : true se la condizione di uguaglianza e' verificata
      */
     public boolean verificaStessoUsername(String u) 
     {
@@ -69,8 +84,11 @@ public class AnagraficaFruitori extends Anagrafica
     }
    
     /**
-     * Metodo che verifica se la data corrente è successiva rispetto alla data di scadenza del servizio prevista per uno specifico fruitore;
+     * Metodo che verifica se la data corrente sia successiva rispetto alla data di scadenza del servizio prevista per uno specifico fruitore;
      * in tal caso procede con la rimozione del suddetto fruitore dall'elenco dei fruitori iscritti
+     * 
+     * Pre : elenco != null
+     * Post : elenco.contains(f) == false
      */
     public void decadenzaFruitore()
     {
@@ -85,10 +103,14 @@ public class AnagraficaFruitori extends Anagrafica
     }
     
     /**
-     * Metodo che verifica se la data corrente è compresa nel periodo tra i dieci giorni antecedenti la data di scadenza del servizio (prevista per uno specifico fruitore) e la stessa data di scadenza;
+     * Metodo che verifica se la data corrente sia compresa nel periodo tra i dieci giorni antecedenti la data di scadenza del servizio (prevista per uno specifico fruitore) e la stessa data di scadenza;
      * in tal caso procede con la modifica della data di scadenza del suddetto fruitore aggiornandola con la data corrente
+     * 
+     * Pre : elenco != null
+     * Post : f.getDatadiScadenza().isEqual(LocalDate.now().plusYears(Fruitore.DATA_DI_SCADENZA))
+     * 
      * @param u : username del fruitore
-     * @return boolean : true se la condizione indicata è verificata
+     * @return boolean : true se la condizione indicata e' verificata
      */  
     public boolean rinnovoIscrizioneFruitore(String u)
     {
@@ -106,8 +128,10 @@ public class AnagraficaFruitori extends Anagrafica
    	 				if((LocalDate.now().isBefore(f.getDataDiScadenza())))
    	 				{
        	 				if((LocalDate.now().isAfter(f.getDataDiScadenza().minusDays(DIECI_GIORNI))))
-   	 							f.setDataDiScadenza(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA));
-       	 						return true;
+       	 				{
+   	 						f.setDataDiScadenza(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA));
+       	 					return true;
+       	 				}
    	 				}
    	 			}		
    	 	}
@@ -116,7 +140,10 @@ public class AnagraficaFruitori extends Anagrafica
     }  
     
     /**
-     * Metodo toString() ereditato dalla classe String per la creazione di una stringa descrittiva contenente l'elenco ordinato dei vari fruitori
+     * Metodo toString() per la creazione di una stringa descrittiva contenente l'elenco ordinato dei vari fruitori
+     * 
+     * Pre : elenco != null
+     * 
      * @return la stringa descrittiva
      */    
     public String toString()		
