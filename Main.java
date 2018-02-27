@@ -1,6 +1,8 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
 import java.io.File;
+
+import it.ing.sw.ServizioFile;
 
 public class Main 
 {
@@ -40,7 +42,7 @@ public class Main
 	public static void main(String[] args) 
 	{
         File gestoreRisorse = new File(NOME_FILE);
-        RaccoltaAnagrafiche ra = null;
+        RaccoltaDati ra = null;
         AnagraficaFruitori af = null;
         AnagraficaOperatori ao = null;
 		boolean caricamentoRiuscito = false;
@@ -60,7 +62,7 @@ public class Main
 			 */
 			try 
 			{
-				ra = (RaccoltaAnagrafiche)ServizioFile.caricaSingoloOggetto(gestoreRisorse);
+				ra = (RaccoltaDati)ServizioFile.caricaSingoloOggetto(gestoreRisorse);
 				af = ra.getAnagraficaFruitori();
 				ao = ra.getAnagraficaOperatori();
 			}
@@ -104,7 +106,7 @@ public class Main
 		 * L'operazione di salvataggio prevede la costruzione di una nuova RaccoltaAnagrafiche attraverso i parametri AnagraficaFruitori ed AnagraficaOperatori e l'aggiornamento del file in gestoreRisorse
 		 */
 		System.out.println(MSG_SALVA);
-		ra = new RaccoltaAnagrafiche(af, ao);
+		ra = new RaccoltaDati(af, ao);
 	    ServizioFile.salvaSingoloOggetto(gestoreRisorse, ra);	
 	}
 	

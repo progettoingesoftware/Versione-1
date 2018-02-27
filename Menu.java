@@ -1,6 +1,8 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
 import java.io.Serializable;
+
+import it.ing.sw.InputDati;
 
 /**
  * Questa classe rappresenta il modello di un Menu'
