@@ -1,11 +1,11 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
 import java.io.Serializable;
 
 /**
- * Questa classe rappresenta un raccoglitore di un'anagrafica di fruitori e di un'anagrafica di operatori
+ * Questa classe rappresenta un raccoglitore di dati, utile per la memorizzazione su file
  */
-public class RaccoltaAnagrafiche implements Serializable
+public class RaccoltaDati implements Serializable
 {
 
     /**
@@ -25,7 +25,7 @@ public class RaccoltaAnagrafiche implements Serializable
      * @param af: anagrafica dei fruitori
      * @param ao: anagrafica operatori
      */
-    public RaccoltaAnagrafiche(AnagraficaFruitori af, AnagraficaOperatori ao)
+    public RaccoltaDati(AnagraficaFruitori af, AnagraficaOperatori ao)
     {
     	   this.af = af;
     	   this.ao = ao;

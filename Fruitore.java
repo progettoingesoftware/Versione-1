@@ -1,4 +1,4 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -93,6 +93,6 @@ public class Fruitore extends Utente implements Serializable
     	    
       	ris.append(String.format(DESCRIZIONE_FRUITORE, getNome(), getCognome(), getUsername(), getPassword(), dataDiNascita.format(formatter), dataDiIscrizione.format(formatter), dataDiScadenza.format(formatter)));
         return ris.toString();
-    }  
+    } 
     
 }

@@ -1,6 +1,7 @@
-package it.ing.sw;
+package it.ing.sw.v1;
 
 import java.io.Serializable;
+
 import java.time.LocalDate;
 import java.util.*;
 
