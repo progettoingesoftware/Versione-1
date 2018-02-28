@@ -290,6 +290,8 @@ public class GestoreMenu implements Serializable
           
         do
         {
+        	af.decadenzaFruitore();
+        	
         	switch(letteraMenu)
     	    {
     	    	case('a'):
@@ -377,6 +379,7 @@ public class GestoreMenu implements Serializable
  	        	                break;
  	        	        	
  	        	        case 3: letteraMenu = 'a';
+ 	        	        		attualef = null;
  	        	                break;
  	        	    }
  	        	    
@@ -404,6 +407,7 @@ public class GestoreMenu implements Serializable
  	        	    			break;
  	        	                
  	        	        case 2: letteraMenu = 'a';
+ 	        	        		attualeop = null;
  	        	                break;
  	        	    }
  	        	    
