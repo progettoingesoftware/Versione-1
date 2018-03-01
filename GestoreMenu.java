@@ -287,136 +287,140 @@ public class GestoreMenu implements Serializable
           
         do
         {
-        	switch(letteraMenu)
-    	    {
-    	      	case('a'):
+          	af.decadenzaFruitore();
+        	    
+        	    switch(letteraMenu)
     	        {
-    	    		   scelta = a.scegli();
+    	             case('a'):
+    	             {
+    	    		        scelta = a.scegli();
 	        	     
-    	    		   switch(scelta)
-	        	   {
-	        	     	case 1: letteraMenu = 'b';
-	        	                break;
+    	    		        switch(scelta)
+	        	        {
+	        	     	    case 1: letteraMenu = 'b';
+	        	                    break;
   	        	
-	        	        case 2: letteraMenu = 'e';
-  	                    		break;
+	        	            case 2: letteraMenu = 'e';
+  	                    		    break;
   	                    		
-	        	        case 3: esci = true;
-	        	        		    break;
-	        	    }
-    	    		    break;
-    	        }
+	        	            case 3: esci = true;
+	        	        		        break;
+	        	        }
+    	    		        break;
+    	             }
     	          
-    	        case('b'):
-    	        {
-    	          	scelta = b.scegli();
+    	             case('b'):
+    	             {
+    	             	scelta = b.scegli();
 	        	     
-	        	    switch(scelta)
-	        	    {
-	        	    	    case 1: iscrizione(af);
-	        	                letteraMenu = 'a';
-	        	                break;
+	        	        switch(scelta)
+	        	        {
+	        	    	        case 1: iscrizione(af);
+	        	                    letteraMenu = 'a';
+	        	                    break;
   	        	
-	        	        case 2: letteraMenu = 'c';
-  	                    		break;
+	        	            case 2: letteraMenu = 'c';
+  	                    	      	break;
   	                    		
-	        	        case 3: letteraMenu = 'a';
-                  		    break;
-	        	    }
-	        	    break;
-    	        }
+	        	            case 3: letteraMenu = 'a';
+                  		        break;
+	        	        }
+	        	        break;
+    	             }
     	          
-    	        case('c'):
-    	        {
-    	          	scelta = c.scegli();
+    	             case('c'):
+    	             {
+    	             	scelta = c.scegli();
     	        	     
-    	         	switch(scelta)
-    	        	    {
-    	        		     case 1: attualef = (Fruitore) accesso(af);
+    	         	    switch(scelta)
+    	        	        {
+    	        		        case 1: attualef = (Fruitore) accesso(af);
         	        	        
-    	                         if(attualef != null)
-    	        				     {
-    	        					     letteraMenu = 'd';
-    	        				     }
-    	        				     else
-    	        				     {
-    	        					     System.out.println(ERRORE);
-    	        					     letteraMenu = 'c';
-    	        				     }
-    	        				     break;
+    	                            if(attualef != null)
+    	        				        {
+    	        					       letteraMenu = 'd';
+    	        				        }
+    	        				        else
+    	        				        {
+    	        					       System.out.println(ERRORE);
+    	        					       letteraMenu = 'c';
+    	        				        }
+    	        				        break;
       	        	
-    	        	         case 2: letteraMenu = 'b';
-      	                     break;
-    	        	     }
-    	         	 break;
-    	        }
+    	        	            case 2: letteraMenu = 'b';
+      	                        break;
+    	        	        }
+    	         	    break;
+    	            }
     	          
-    	        case('d'):
-    	        {
-    	         	scelta = d.scegli();
+    	            case('d'):
+    	            {
+    	         	    scelta = d.scegli();
  	        	     
- 	        	    switch(scelta)
- 	        	    {
- 	        	         case 1: if(af.rinnovoIscrizioneFruitore(attualef.getUsername()))
+ 	        	        switch(scelta)
+ 	        	        {
+ 	        	            case 1: if(af.rinnovoIscrizioneFruitore(attualef.getUsername()))
  	        	                     	System.out.println(RINNOVO_OK);
- 	        	                 else
+ 	        	                    else
  	        	                  	    System.out.println(RINNOVO_NON_OK);
      	        				
- 	        	                 letteraMenu = 'd';
- 	        	                 break;
+ 	        	                    letteraMenu = 'd';
+ 	        	                    break;
  	        	                
- 	        	        case 2: System.out.println(attualef.toString());
- 	        	        		    letteraMenu = 'd';
- 	        	                break;
+ 	        	            case 2: System.out.println(attualef.toString());
+ 	        	        		        letteraMenu = 'd';
+ 	        	                    break;
  	        	        	
- 	        	        case 3: letteraMenu = 'a';
- 	        	                break;
- 	        	    }
- 	        	    break;
-    	        }
+ 	        	            case 3: letteraMenu = 'a';
+ 	        	                    attualef = null;
+ 	        	                    break;
+ 	        	        }
+ 	        	        break;
+    	             }
     	        
-    	        case('e'):
-    	        {
-    	        	    scelta = e.scegli();
+    	             case('e'):
+    	             {
+    	        	        scelta = e.scegli();
  	        	     
- 	        	    switch(scelta)
- 	        	    {
- 	        	    	     case 1: attualeop = (Operatore) accesso(ao);
+ 	        	        switch(scelta)
+ 	        	        {
+ 	        	    	        case 1: attualeop = (Operatore) accesso(ao);
  	        	    				
- 	                         if(attualeop != null)
- 	        	    			     {
- 	        	    				    letteraMenu = 'f';
- 	        	    			     }
- 	        	    			     else
- 	        	    			     {
- 	        	    				    System.out.println(ERRORE);
- 	        	    				    letteraMenu = 'e';
- 	        	    			     }
- 	        	    	             break;
+ 	                            if(attualeop != null)
+ 	        	    			        {
+ 	        	    				       letteraMenu = 'f';
+ 	        	    			        }
+ 	        	    			        else
+ 	        	    			        {
+ 	        	    				       System.out.println(ERRORE);
+ 	        	    				       letteraMenu = 'e';
+ 	        	    			        }
+ 	        	    	                break;
  	        	                
- 	        	        case 2: letteraMenu = 'a';
- 	        	                break;
- 	        	    }
- 	        	    break;
-    	        }
+ 	        	             case 2: letteraMenu = 'a';
+ 	        	                     break;
+ 	        	        }
+ 	        	        break;
+    	              }
     	        
-    	        case('f'):
-    	        {
-    	        	     scelta = f.scegli();
+    	             case('f'):
+    	             {
+    	        	        scelta = f.scegli();
  	        	     
- 	        	     switch(scelta)
- 	        	     {
- 	        	     	case 1: attualeop.visualizzaElencoFruitori(af);
- 	        	     			letteraMenu = 'f';
- 	        	                break;
+ 	        	        switch(scelta)
+ 	        	        {
+ 	        	     	    case 1: attualeop.visualizzaElencoFruitori(af);
+ 	        	     			    letteraMenu = 'f';
+ 	        	                    break;
  	        	                
- 	        	        case 2: letteraMenu = 'a';
- 	        	                break;
- 	        	     }
- 	        	     break;
-    	        }
+ 	        	            case 2: letteraMenu = 'a';
+ 	        	                    attualeop = null;
+ 	        	                    break;
+ 	        	        }
+ 	        	        break;
+    	              }
     	        
-    	    }
+    	      }
     	      
        }while(!esci);   
        
