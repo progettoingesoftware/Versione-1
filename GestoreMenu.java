@@ -40,8 +40,8 @@ public class GestoreMenu implements Serializable
     public static final String INS_COGNOME = "Inserisci il tuo cognome: ";
     public static final String INS_USERNAME = "Inserisci il tuo username: ";
     public static final String INS_PASSWORD = "Inserisci la tua password: ";
-    public static final String INS_GIORNO_NASCITA = "Inserisci il tuo giorno di nascita: ";
-    public static final String INS_MESE_NASCITA = "Inserisci il tuo mese di nascita: ";
+    public static final String INS_GIORNO_NASCITA = "Inserisci il tuo giorno di nascita (in cifre): ";
+    public static final String INS_MESE_NASCITA = "Inserisci il tuo mese di nascita (in cifre): ";
     public static final String INS_ANNO_NASCITA = "Inserisci il tuo anno di nascita (indicare 4 cifre): ";
 
     public static final String ISCRIZIONE_OK = "Complimenti, iscrizione avvenuta con successo!\n";
@@ -407,7 +407,6 @@ public class GestoreMenu implements Serializable
  	        	    			break;
  	        	                
  	        	        case 2: letteraMenu = 'a';
- 	        	        		attualeop = null;
  	        	                break;
  	        	    }
  	        	    
@@ -420,11 +419,12 @@ public class GestoreMenu implements Serializable
  	        	     
  	        	     switch(scelta)
  	        	     {
- 	        	     	case 1: attualeop.visualizzaElencoFruitori(af);
+ 	        	     	case 1: System.out.println(attualeop.visualizzaElencoFruitori(af));
  	        	     			letteraMenu = 'f';
  	        	                break;
  	        	                
  	        	        case 2: letteraMenu = 'a';
+     	        				attualeop = null;
  	        	                break;
  	        	     }
  	        	     

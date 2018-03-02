@@ -31,9 +31,9 @@ public class Operatore extends Utente implements Serializable
      * 
      * @param e : l'oggetto indicato dove e' depositato l'array di Fruitori su cui poter invocare il metodo toString()
      */
-    public void visualizzaElencoFruitori(AnagraficaFruitori e)
+    public String visualizzaElencoFruitori(AnagraficaFruitori e)
     {
-   	     System.out.println(e.toString());
+   	     return e.toString();
     }
     
 }

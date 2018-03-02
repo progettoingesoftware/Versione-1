@@ -6,10 +6,10 @@ import it.ing.sw.ServizioFile;
 
 public class Main 
 {
-	public static final String NOME_FILE = "gestoreRisorse.dat";								
+	public static final String NOME_FILE = "gestoreRisorse.txt";								
 	public static final String MSG_NO_CAST = "ATTENZIONE PROBLEMI CON IL CAST";			
 	public static final String MSG_OK_FILE = "CARICAMENTO DA FILE EFFETTUATO";			
-	public static final String MSG_NO_FILE = "CARICAMENTO DA FILE NON RIUSCITO. OCCORRE CREARE UNA NUOVA LISTA UTENTI E UNA NUOVA LISTA BLOG";			
+	public static final String MSG_NO_FILE = "CARICAMENTO DA FILE NON RIUSCITO. OCCORRE CREARE UNA NUOVA ANAGRAFICA DEI FRUITORI";			
 	public static final String MSG_SALVA = "SALVATAGGIO DATI";
 	public static final String ERRORE_CONVERSIONE_DATA = "Attenzione! Si e' verificato un errore di conversione della data";	
 	
@@ -42,15 +42,17 @@ public class Main
 	public static void main(String[] args) 
 	{
         File gestoreRisorse = new File(NOME_FILE);
+        
         RaccoltaDati ra = null;
         AnagraficaFruitori af = null;
         AnagraficaOperatori ao = null;
-		boolean caricamentoRiuscito = false;
+		
+        boolean caricamentoRiuscito = false;
 		
 		/**
 		 * Tale istruzione verifica se il file in questione esiste all'interno del sistema di memorizzazione locale.
 		 * In questo caso vengono estrapolate sia la RaccoltaAnagrafiche sia l'AnagraficaFruitori e l'AnagraficaOperatori, venendo salvate nelle variabili opportune.
-		 * Le probabili eccezioni vengono gestite secondo la modalità piu' adatta al tipo di eccezione ed infine viene mostrato un messaggio di conferma se il caricamento da file gia' esistente si e' concluso con successo
+		 * Le probabili eccezioni vengono gestite secondo la modalita' piu' adatta al tipo di eccezione ed infine viene mostrato un messaggio di conferma se il caricamento da file gia' esistente si e' concluso con successo
 		 */
 		if (gestoreRisorse.exists())
 		{
