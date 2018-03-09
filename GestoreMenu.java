@@ -1,12 +1,8 @@
 package it.ing.sw.v1;
 
 import java.io.Serializable;
-
-import java.time.DateTimeException;
-
-import it.ing.sw.InputDati;
-
 import java.time.*;
+import it.ing.sw.InputDati;
 
 /**
  * Questa classe permette una corretta gestione dell'uso dei menu'. E' essenzialmente suddivisa in tre parti:
@@ -14,55 +10,52 @@ import java.time.*;
  * 2 - Metodi ausiliari per la gestione delle funzionalita' basilari del software (iscrizione, accesso)
  * 3 - Metodo logicaMenu per la realizzazione delle connessioni tra i vari menu'
  */
-public class GestoreMenu implements Serializable
+public class GestoreMenu implements Serializable 
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String SALUTO_INIZIALE = "Benvenuto nell'applicazione per la gestione di risorse multimediali\n";
-    public static final String SALUTO_FINALE = "Arrivederci, alla prossima!\n";
-    public static final String INTESTAZIONE_A = "IN QUALE MODALITA VUOI ACCEDERE?";
-	public static final String [] OPZIONI_A = {"Fruitore", "Operatore", "Esci"};
+	public static final String SALUTO_FINALE = "Arrivederci, alla prossima!\n";
+	public static final String INTESTAZIONE_A = "IN QUALE MODALITA VUOI ACCEDERE?";
+	public static final String[] OPZIONI_A = { "Fruitore", "Operatore", "Esci" };
 	public static final String INTESTAZIONE_B = "SCEGLI UN'OPZIONE";
-	public static final String [] OPZIONI_B = {"Iscriviti come nuovo fruitore", "Accedi", "Indietro"};
+	public static final String[] OPZIONI_B = { "Iscriviti come nuovo fruitore", "Accedi", "Indietro" };
 	public static final String INTESTAZIONE_C = "ACCESSO FRUITORE";
-	public static final String [] OPZIONI_C = {"Inserisci username e password", "Indietro"};
-	public static final String INTESTAZIONE_D= "COSA DESIDERI FARE?";
-	public static final String [] OPZIONI_D = {"Rinnova iscrizione", "Visualizza profilo", "Logout"};
+	public static final String[] OPZIONI_C = { "Inserisci username e password", "Indietro" };
+	public static final String INTESTAZIONE_D = "COSA DESIDERI FARE?";
+	public static final String[] OPZIONI_D = { "Rinnova iscrizione", "Visualizza profilo", "Logout" };
 	public static final String INTESTAZIONE_E = "ACCESSO OPERATORE";
-	public static final String [] OPZIONI_E = {"Inserisci username e password", "Indietro"};
+	public static final String[] OPZIONI_E = { "Inserisci username e password", "Indietro" };
 	public static final String INTESTAZIONE_F = "COSA DESIDERI FARE?";
-	public static final String [] OPZIONI_F = {"Visualizza anagrafica fruitori", "Logout"};
-	
-    public static final String INS_NOME = "Inserisci il tuo nome: ";
-    public static final String INS_COGNOME = "Inserisci il tuo cognome: ";
-    public static final String INS_USERNAME = "Inserisci il tuo username: ";
-    public static final String INS_PASSWORD = "Inserisci la tua password: ";
-    public static final String INS_GIORNO_NASCITA = "Inserisci il tuo giorno di nascita (in cifre): ";
-    public static final String INS_MESE_NASCITA = "Inserisci il tuo mese di nascita (in cifre): ";
-    public static final String INS_ANNO_NASCITA = "Inserisci il tuo anno di nascita (indicare 4 cifre): ";
+	public static final String[] OPZIONI_F = { "Visualizza anagrafica fruitori", "Logout" };
 
-    public static final String ISCRIZIONE_OK = "Complimenti, iscrizione avvenuta con successo!\n";
-    public static final String ISCRIZIONE_NON_OK = "Non e' stato possibile iscrivere alcun utente\n";
-    public static final String ISCRIZIONE_NON_OK_OMONIMIA_FRUITORI = "ATTENZIONE! Le credenziali inserite non sono valide poiche' gia' in uso.\n";
-    public static final String ISCRIZIONE_NON_OK_STESSO_USERNAME = "ATTENZIONE! Lo username indicato non e' valido poiche' gia' in uso.\n";
-    public static final String ISCRIZIONE_NON_OK_MAGGIORE_ETA = "ATTENZIONE! L'utente indicato non puo' iscriversi in quanto non e' maggiorenne.\n";
+	public static final String INS_NOME = "Inserisci il tuo nome: ";
+	public static final String INS_COGNOME = "Inserisci il tuo cognome: ";
+	public static final String INS_USERNAME = "Inserisci il tuo username: ";
+	public static final String INS_PASSWORD = "Inserisci la tua password: ";
+	public static final String INS_GIORNO_NASCITA = "Inserisci il tuo giorno di nascita (in cifre): ";
+	public static final String INS_MESE_NASCITA = "Inserisci il tuo mese di nascita (in cifre): ";
+	public static final String INS_ANNO_NASCITA = "Inserisci il tuo anno di nascita (indicare 4 cifre): ";
 
-    public static final String RINNOVO_OK = "Il rinnovo dell'iscrizione e' avvenuto con successo.\n";
-    public static final String RINNOVO_NON_OK = "Non e' possibile effettuare il rinnovo dell'iscrizione.\n";
-    
-    public static final String USERNAME = "Username: ";
+	public static final String ISCRIZIONE_OK = "Complimenti, iscrizione avvenuta con successo!\n";
+	public static final String ISCRIZIONE_NON_OK = "Non e' stato possibile iscrivere alcun utente\n";
+	public static final String ISCRIZIONE_NON_OK_OMONIMIA_FRUITORI = "ATTENZIONE! Le credenziali inserite non sono valide poiche' gia' in uso.\n";
+	public static final String ISCRIZIONE_NON_OK_STESSO_USERNAME = "ATTENZIONE! Lo username indicato non e' valido poiche' gia' in uso.\n";
+	public static final String ISCRIZIONE_NON_OK_MAGGIORE_ETA = "ATTENZIONE! L'utente indicato non puo' iscriversi in quanto non e' maggiorenne.\n";
+
+	public static final String RINNOVO_OK = "Il rinnovo dell'iscrizione e' avvenuto con successo.\n";
+	public static final String RINNOVO_NON_OK = "Non e' possibile effettuare il rinnovo dell'iscrizione.\n";
+
+	public static final String USERNAME = "Username: ";
 	public static final String PASSWORD = "Password: ";
 	public static final String CREDENZIALI_ERRATE = "ATTENZIONE! Lo username e/o la password non sono validi.\n";
 	public static final String DATA_DI_NASCITA_ERRATA = "ATTENZIONE! La data di nascita inserita non e' valida.\n";
-	
+
 	public static final String RICHIESTA_PROSECUZIONE = "Si desidera riprovare? (S/N)\n";
 	public static final String ERRORE = "Si e' verificato un errore\n";
 
-	/**
-	 * Metodo per l'aggiunta di un nuovo fruitore all'elenco dei fruitori gia' presenti all'interno di af.
+    /**
+	 * Metodo di interazione con l'utente per l'aggiunta di un nuovo fruitore all'elenco dei fruitori gia' presenti all'interno di af.
 	 * Vengono effettuati dei controlli sulla correttezza della data di nascita inserita e sulla possibile presenza di fruitori gia' iscritti in possesso delle medesime credenziali indicate
 	 * 
 	 * Pre : af != null
@@ -210,9 +203,9 @@ public class GestoreMenu implements Serializable
 		}while(!end);
 	    
 	}
-	
+
 	/**
-	 * Metodo per l'accesso di un utente al sistema.
+	 * Metodo di interazione con l'utente per l'accesso al sistema.
 	 * Vengono effettuati dei controlli sulla correttezza dello username e della password indicati
 	 * 
 	 * Pre : ag != null
@@ -257,185 +250,186 @@ public class GestoreMenu implements Serializable
 		
 	    return ut;
 	}
-    
+
     /**
      * Vengono inizialmente creati i vari menu' con le relative intestazioni ed opzioni. 
-     * In seguito l'andamento del programma è scandito attraverso l'aggiornamento della variabile letteraMenu e l'uso di switch-case innestati,
+     * In seguito l'andamento del programma e' scandito attraverso l'aggiornamento della variabile letteraMenu e l'uso di switch-case innestati,
      * in cui il primo livello (contraddistinto dalle variabili letterali) indica gli specifici menu', mentre il secondo livello (evidenziato
      * dall'uso della variabile intera 'scelta') indica le opzioni relative ad ogni menu' e le operazioni che vengono indi svolte
      * 
      * Pre : af != null
      * Pre : ao != null
+     * Pre : arc != null
      * 
      * @param af : oggetto di tipo AnagraficaFruitori
      * @param ao : oggetto di tipo AnagraficaOperatori
+     * @param arc : oggetto di tipo Archivio
      */
-    public void logicaMenu(AnagraficaFruitori af, AnagraficaOperatori ao)
-    {
-    	Menu a = new Menu(INTESTAZIONE_A, OPZIONI_A);
-	    Menu b = new Menu(INTESTAZIONE_B, OPZIONI_B);
-	    Menu c = new Menu(INTESTAZIONE_C, OPZIONI_C);
-	    Menu d = new Menu(INTESTAZIONE_D, OPZIONI_D);
-	    Menu e = new Menu(INTESTAZIONE_E, OPZIONI_E);
-	    Menu f = new Menu(INTESTAZIONE_F, OPZIONI_F);
-    	
-    	boolean esci = false;
-    	char letteraMenu =  'a';
-        int scelta = 0;
-        
-        Fruitore attualef = null;
-        Operatore attualeop = null;
-       
-        System.out.println(SALUTO_INIZIALE);
-          
-        do
-        {
-        	af.decadenzaFruitore();
-        	
-        	switch(letteraMenu)
-    	    {
-    	    	case('a'):
-    	        {
-    	    		scelta = a.scegli();
-	        	     
-    	    		switch(scelta)
-	        	    {
-	        	    	case 1: letteraMenu = 'b';
-	        	                break;
-  	        	
-	        	        case 2: letteraMenu = 'e';
-  	                    		break;
-  	                    		
-	        	        case 3: esci = true;
-	        	        		break;
-	        	    }
-    	    		
-    	    		break;
-    	        }
-    	          
-    	        case('b'):
-    	        {
-    	        	scelta = b.scegli();
-	        	     
-	        	    switch(scelta)
-	        	    {
-	        	    	case 1: iscrizione(af);
-	        	                letteraMenu = 'a';
-	        	                break;
-  	        	
-	        	        case 2: letteraMenu = 'c';
-  	                    		break;
-  	                    		
-	        	        case 3: letteraMenu = 'a';
-                  				break;
-	        	    }
-	        	    
-	        	    break;
-    	        }
-    	          
-    	        case('c'):
-    	        {
-    	        	scelta = c.scegli();
-    	        	     
-    	        	switch(scelta)
-    	        	{
-    	        		case 1: attualef = (Fruitore) accesso(af);
-        	        	        
-    	        				if(attualef != null)
-    	        				{
-    	        					letteraMenu = 'd';
-    	        				}
-    	        				else
-    	        				{
-    	        					System.out.println(ERRORE);
-    	        					letteraMenu = 'c';
-    	        				}
-    	        				
-    	        				break;
-      	        	
-    	        	    case 2: letteraMenu = 'b';
-      	                    	break;
-    	        	}
-    	        	
-    	        	break;
-    	        }
-    	          
-    	        case('d'):
-    	        {
-    	        	scelta = d.scegli();
- 	        	     
- 	        	    switch(scelta)
- 	        	    {
- 	        	    	case 1: if(af.rinnovoIscrizioneFruitore(attualef.getUsername()))
- 	        	                	System.out.println(RINNOVO_OK);
- 	        	                else
- 	        	                  	System.out.println(RINNOVO_NON_OK);
-     	        				
- 	        	    			letteraMenu = 'd';
- 	        	                break;
- 	        	                
- 	        	        case 2: System.out.println(attualef.toString());
- 	        	        		letteraMenu = 'd';
- 	        	                break;
- 	        	        	
- 	        	        case 3: letteraMenu = 'a';
- 	        	        		attualef = null;
- 	        	                break;
- 	        	    }
- 	        	    
- 	        	    break;
-    	        }
-    	        
-    	        case('e'):
-    	        {
-    	        	scelta = e.scegli();
- 	        	     
- 	        	    switch(scelta)
- 	        	    {
- 	        	    	case 1: attualeop = (Operatore) accesso(ao);
- 	        	    				
- 	        	    			if(attualeop != null)
- 	        	    			{
- 	        	    				letteraMenu = 'f';
- 	        	    			}
- 	        	    			else
- 	        	    			{
- 	        	    				System.out.println(ERRORE);
- 	        	    				letteraMenu = 'e';
- 	        	    			}
- 	        	    	
- 	        	    			break;
- 	        	                
- 	        	        case 2: letteraMenu = 'a';
- 	        	                break;
- 	        	    }
- 	        	    
- 	        	    break;
-    	        }
-    	        
-    	        case('f'):
-    	        {
-    	        	 scelta = f.scegli();
- 	        	     
- 	        	     switch(scelta)
- 	        	     {
- 	        	     	case 1: System.out.println(attualeop.visualizzaElencoFruitori(af));
- 	        	     			letteraMenu = 'f';
- 	        	                break;
- 	        	                
- 	        	        case 2: letteraMenu = 'a';
-     	        				attualeop = null;
- 	        	                break;
- 	        	     }
- 	        	     
- 	        	     break;
-    	        }
-    	        
-    	    }
-    	      
-       }while(!esci);   
-       
-       System.out.println(SALUTO_FINALE);       
-    }
-     
+	public void logicaMenu(AnagraficaFruitori af, AnagraficaOperatori ao) 
+	{
+		Menu a = new Menu(INTESTAZIONE_A, OPZIONI_A);
+		Menu b = new Menu(INTESTAZIONE_B, OPZIONI_B);
+		Menu c = new Menu(INTESTAZIONE_C, OPZIONI_C);
+		Menu d = new Menu(INTESTAZIONE_D, OPZIONI_D);
+		Menu e = new Menu(INTESTAZIONE_E, OPZIONI_E);
+		Menu f = new Menu(INTESTAZIONE_F, OPZIONI_F);
+
+		boolean esci = false;
+		char letteraMenu = 'a';
+		int scelta = 0;
+
+		Fruitore attualef = null;
+		Operatore attualeop = null;
+
+		System.out.println(SALUTO_INIZIALE);
+
+		do 
+		{
+			af.decadenzaFruitore();
+
+			switch (letteraMenu) 
+			{
+				case ('a'): 
+				{
+					scelta = a.scegli();
+
+					switch (scelta) 
+					{
+						case 1:
+						letteraMenu = 'b';
+						break;
+
+						case 2:
+							letteraMenu = 'e';
+							break;
+
+				case 3:
+					esci = true;
+					break;
+				}
+
+				break;
+			}
+
+			case ('b'): {
+				scelta = b.scegli();
+
+				switch (scelta) {
+				case 1:
+					iscrizione(af);
+					letteraMenu = 'a';
+					break;
+
+				case 2:
+					letteraMenu = 'c';
+					break;
+
+				case 3:
+					letteraMenu = 'a';
+					break;
+				}
+
+				break;
+			}
+
+			case ('c'): {
+				scelta = c.scegli();
+
+				switch (scelta) {
+				case 1:
+					attualef = (Fruitore) accesso(af);
+
+					if (attualef != null) {
+						letteraMenu = 'd';
+					} else {
+						System.out.println(ERRORE);
+						letteraMenu = 'c';
+					}
+
+					break;
+
+				case 2:
+					letteraMenu = 'b';
+					break;
+				}
+
+				break;
+			}
+
+			case ('d'): {
+				scelta = d.scegli();
+
+				switch (scelta) {
+				case 1:
+					if (attualef.rinnovaIscrizione())
+						System.out.println(RINNOVO_OK);
+					else
+						System.out.println(RINNOVO_NON_OK);
+
+					letteraMenu = 'd';
+					break;
+
+				case 2:
+					System.out.println(attualef.toString());
+					letteraMenu = 'd';
+					break;
+
+				case 3:
+					letteraMenu = 'a';
+					attualef = null;
+					break;
+				}
+
+				break;
+			}
+
+			case ('e'): {
+				scelta = e.scegli();
+
+				switch (scelta) {
+				case 1:
+					attualeop = (Operatore) accesso(ao);
+
+					if (attualeop != null) {
+						letteraMenu = 'f';
+					} else {
+						System.out.println(ERRORE);
+						letteraMenu = 'e';
+					}
+
+					break;
+
+				case 2:
+					letteraMenu = 'a';
+					break;
+				}
+
+				break;
+			}
+
+			case ('f'): {
+				scelta = f.scegli();
+
+				switch (scelta) {
+				case 1:
+					System.out.println(attualeop.visualizzaElencoFruitori(af));
+					letteraMenu = 'f';
+					break;
+
+				case 2:
+					letteraMenu = 'a';
+					attualeop = null;
+					break;
+				}
+
+				break;
+			}
+
+			}
+
+		} while (!esci);
+
+		System.out.println(SALUTO_FINALE);
+	}
+
 }
