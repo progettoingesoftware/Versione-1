@@ -6,10 +6,8 @@ import java.util.*;
 /**
  * Questa classe rappresenta il modello di una Anagrafica
  */
-public class Anagrafica implements Serializable {
-	/**
-	 * 
-	 */
+public class Anagrafica implements Serializable 
+{
 	private static final long serialVersionUID = 1L;
 
 	protected Vector<Utente> elenco;

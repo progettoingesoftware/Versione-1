@@ -15,7 +15,8 @@ public class RaccoltaDati implements Serializable
 	/**
 	 * Metodo costruttore della classe RaccoltaAnagrafiche
 	 * 
-	 * Pre : af != null Pre : ao != null
+	 * Pre : af != null 
+	 * Pre : ao != null
 	 * 
 	 * @param af : anagrafica dei fruitori
 	 * @param ao : anagrafica operatori

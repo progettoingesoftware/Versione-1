@@ -16,7 +16,6 @@ public class Utente implements Serializable
 
 	/**
 	 * Metodo costruttore della classe Utente
-	 * 
 	 * @param n : nome dell'utente
 	 * @param c : cognome dell'utente
 	 * @param u : username dell'utente

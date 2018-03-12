@@ -8,11 +8,8 @@ import java.time.LocalDate;
  * verifica di specifiche condizioni necessarie per il mantenimento e
  * l'aggiornamento dei dati
  */
-public class AnagraficaFruitori extends Anagrafica implements Serializable {
-
-	/**
-	 * 
-	 */
+public class AnagraficaFruitori extends Anagrafica implements Serializable 
+{
 	private static final long serialVersionUID = 1L;
 
 	public static final String INTESTAZIONE_ELENCO = "Elenco degli attuali fruitori: \n";
@@ -23,7 +20,8 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable {
 	 * 
 	 * Post : elenco != null
 	 */
-	public AnagraficaFruitori() {
+	public AnagraficaFruitori()
+	{
 		super();
 	}
 
@@ -32,10 +30,10 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable {
 	 * 
 	 * Post : elenco.contains(f)
 	 * 
-	 * @param f
-	 *            : l'oggetto fruitore che si desidera aggiungere
+	 * @param f : l'oggetto fruitore che si desidera aggiungere
 	 */
-	public void aggiungiFruitore(Fruitore f) {
+	public void aggiungiFruitore(Fruitore f) 
+	{
 		elenco.add(f);
 	}
 
@@ -46,16 +44,15 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable {
 	 * 
 	 * Pre : elenco != null
 	 * 
-	 * @param n
-	 *            : nome del nuovo fruitore
-	 * @param c
-	 *            : cognome del nuovo fruitore
-	 * @param dn
-	 *            : data di nascita del nuovo fruitore
+	 * @param n : nome del nuovo fruitore
+	 * @param c : cognome del nuovo fruitore
+	 * @param dn : data di nascita del nuovo fruitore
 	 * @return boolean : true se le condizioni di uguaglianza sono verificate
 	 */
-	public boolean verificaOmonimiaFruitori(String n, String c, LocalDate dn) {
-		for (int i = 0; i < elenco.size(); i++) {
+	public boolean verificaOmonimiaFruitori(String n, String c, LocalDate dn) 
+	{
+		for (int i = 0; i < elenco.size(); i++) 
+		{
 			Fruitore f = (Fruitore) elenco.get(i);
 
 			if ((f.getNome()).equalsIgnoreCase(n) && (f.getCognome().equalsIgnoreCase(c))
@@ -72,12 +69,13 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable {
 	 * 
 	 * Pre : elenco != null
 	 * 
-	 * @param u
-	 *            : username del nuovo fruitore
+	 * @param u : username del nuovo fruitore
 	 * @return boolean : true se la condizione di uguaglianza e' verificata
 	 */
-	public boolean verificaStessoUsername(String u) {
-		for (int i = 0; i < elenco.size(); i++) {
+	public boolean verificaStessoUsername(String u) 
+	{
+		for (int i = 0; i < elenco.size(); i++) 
+		{
 			Fruitore f = (Fruitore) elenco.get(i);
 
 			if ((f.getUsername()).equals(u))
@@ -93,10 +91,13 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable {
 	 * procede con la rimozione del suddetto fruitore dall'elenco dei fruitori
 	 * iscritti
 	 * 
-	 * Pre : elenco != null Post : elenco.contains(f) == false
+	 * Pre : elenco != null 
+	 * Post : elenco.contains(f) == false
 	 */
-	public void decadenzaFruitore() {
-		for (int i = 0; i < elenco.size(); i++) {
+	public void decadenzaFruitore() 
+	{
+		for (int i = 0; i < elenco.size(); i++) 
+		{
 			Fruitore f = (Fruitore) elenco.get(i);
 
 			if ((LocalDate.now().isAfter(f.getDataDiScadenza())))
@@ -113,18 +114,23 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable {
 	 * 
 	 * @return la stringa descrittiva
 	 */
-	public String toString() {
+	public String toString() 
+	{
 		StringBuffer ris = new StringBuffer();
 
-		if (elenco.size() == 0) {
+		if (elenco.size() == 0) 
+		{
 			ris.append(ANAGRAFICA_VUOTA);
-		} else {
+		} else 
+		{
 			ris.append(INTESTAZIONE_ELENCO);
 
-			for (int i = 0; i < elenco.size(); i++) {
+			for (int i = 0; i < elenco.size(); i++) 
+			{
 				Fruitore f = (Fruitore) elenco.get(i);
 				ris.append(i + 1 + ")" + f.toString() + "\n");
 			}
+			
 		}
 
 		return ris.toString();

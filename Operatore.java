@@ -11,7 +11,6 @@ public class Operatore extends Utente implements Serializable
 
 	/**
 	 * Metodo costruttore della classe Operatore
-	 * 
 	 * @param n : nome dell'operatore
 	 * @param c : cognome dell'operatore
 	 * @param u : username dell'operatore

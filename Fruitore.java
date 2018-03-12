@@ -7,10 +7,8 @@ import java.time.format.DateTimeFormatter;
 /**
  * Questa classe rappresenta il modello di un Fruitore
  */
-public class Fruitore extends Utente implements Serializable {
-	/**
-	 * 
-	 */
+public class Fruitore extends Utente implements Serializable 
+{
 	private static final long serialVersionUID = 1L;
 
 	private LocalDate dataDiNascita;
@@ -25,21 +23,17 @@ public class Fruitore extends Utente implements Serializable {
 	/**
 	 * Metodo costruttore della classe Fruitore
 	 * 
-	 * Pre : dn != null Post : dataDiScadenza ==
-	 * dataDiIscrizione.plusYears(TERMINE_SCADENZA)
+	 * Pre : dn != null 
+	 * Post : dataDiScadenza == dataDiIscrizione.plusYears(TERMINE_SCADENZA)
 	 * 
-	 * @param n
-	 *            : nome del fruitore
-	 * @param c
-	 *            : cognome del fruitore
-	 * @param dn
-	 *            : data di nascita del fruitore
-	 * @param u
-	 *            : username del fruitore
-	 * @param p
-	 *            : password del fruitore
+	 * @param n : nome del fruitore
+	 * @param c : cognome del fruitore
+	 * @param dn : data di nascita del fruitore
+	 * @param u : username del fruitore
+	 * @param p : password del fruitore
 	 */
-	public Fruitore(String n, String c, int an, int mn, int gn, String u, String p) {
+	public Fruitore(String n, String c, int an, int mn, int gn, String u, String p) 
+	{
 		super(n, c, u, p);
 		this.dataDiNascita = LocalDate.of(an, mn, gn);
 
@@ -60,28 +54,31 @@ public class Fruitore extends Utente implements Serializable {
 	/**
 	 * Metodi get per il ritorno dei vari attributi della classe Fruitore
 	 */
-	public LocalDate getDataDiNascita() {
+	public LocalDate getDataDiNascita() 
+	{
 		return dataDiNascita;
 	}
 
-	public LocalDate getDataDiIscrizione() {
+	public LocalDate getDataDiIscrizione() 
+	{
 		return dataDiIscrizione;
 	}
 
-	public LocalDate getDataDiScadenza() {
+	public LocalDate getDataDiScadenza() 
+	{
 		return dataDiScadenza;
 	}
 
 	/**
 	 * Metodo set per la modifica della data di scadenza del servizio
 	 * 
-	 * Pre : nuovads.isAfter(dataDiScadenza) Post : dataDiScadenza ==
-	 * nuovads.plusYears(TERMINE_SCADENZA)
+	 * Pre : nuovads.isAfter(dataDiScadenza) 
+	 * Post : dataDiScadenza == nuovads.plusYears(TERMINE_SCADENZA)
 	 * 
-	 * @param nuovads
-	 *            : data di scadenza aggiornata
+	 * @param nuovads : data di scadenza aggiornata
 	 */
-	public void setDataDiScadenza(LocalDate nuovads) {
+	public void setDataDiScadenza(LocalDate nuovads) 
+	{
 		dataDiScadenza = nuovads;
 	}
 
@@ -93,11 +90,12 @@ public class Fruitore extends Utente implements Serializable {
 	 * 
 	 * @return boolean : true se la condizione indicata e' verificata
 	 */
-	public boolean rinnovaIscrizione() {
-
-		if ((LocalDate.now().isBefore(dataDiScadenza))) {
-
-			if ((LocalDate.now().isAfter(dataDiScadenza.minusDays(DIECI_GIORNI)))) {
+	public boolean rinnovaIscrizione() 
+	{
+		if ((LocalDate.now().isBefore(dataDiScadenza))) 
+		{
+			if ((LocalDate.now().isAfter(dataDiScadenza.minusDays(DIECI_GIORNI)))) 
+			{
 				setDataDiScadenza(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA));
 				return true;
 			}
@@ -105,7 +103,6 @@ public class Fruitore extends Utente implements Serializable {
 		}
 
 		return false;
-
 	}
 
 	/**
@@ -114,7 +111,8 @@ public class Fruitore extends Utente implements Serializable {
 	 * 
 	 * @return la stringa descrittiva
 	 */
-	public String toString() {
+	public String toString() 
+	{
 		StringBuffer ris = new StringBuffer();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMATO_DATA);
 
