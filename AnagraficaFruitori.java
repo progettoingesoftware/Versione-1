@@ -1,4 +1,4 @@
-package it.ing.sw.v1;
+package logica_1;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -100,8 +100,8 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable
 		{
 			Fruitore f = (Fruitore) elenco.get(i);
 
-			if ((LocalDate.now().isAfter(f.getDataDiScadenza())))
-				elenco.remove(f);
+			if ((LocalDate.now().equals(f.getDataDiScadenza())) || (LocalDate.now().isAfter(f.getDataDiScadenza())))
+				  elenco.remove(f);
 		}
 
 	}

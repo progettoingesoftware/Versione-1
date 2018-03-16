@@ -1,4 +1,4 @@
-package it.ing.sw.v1;
+package logica_1;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -94,9 +94,10 @@ public class Fruitore extends Utente implements Serializable
 	{
 		if ((LocalDate.now().isBefore(dataDiScadenza))) 
 		{
-			if ((LocalDate.now().isAfter(dataDiScadenza.minusDays(DIECI_GIORNI)))) 
+			LocalDate ld = dataDiScadenza.minusDays(DIECI_GIORNI);
+			if ((LocalDate.now().equals(ld)) || (LocalDate.now().isAfter(ld))) 
 			{
-				setDataDiScadenza(LocalDate.now().plusYears(Fruitore.TERMINE_SCADENZA));
+				setDataDiScadenza(dataDiScadenza.plusYears(Fruitore.TERMINE_SCADENZA));
 				return true;
 			}
 

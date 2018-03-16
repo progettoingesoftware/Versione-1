@@ -1,15 +1,15 @@
-package it.ing.sw.v1;
+package interazione_1;
 
 import java.io.Serializable;
 import java.time.*;
 
-import it.ing.sw.*;
+import logica_1.*;
+import utility.*;
 
 /**
- * Questa classe permette una corretta gestione dell'uso dei menu'. E' essenzialmente suddivisa in tre parti:
- * 1 - Elenco delle costanti che costituiscono le intestazioni dei menu' e le varie opzioni che li compongono
- * 2 - Metodi ausiliari per la gestione delle funzionalita' basilari del software (iscrizione, accesso)
- * 3 - Metodo logicaMenu per la realizzazione delle connessioni tra i vari menu'
+ * Questa classe permette una corretta gestione dell'uso dei menu'. E' essenzialmente suddivisa in due parti:
+ * 1 - Metodi ausiliari per la gestione delle funzionalita' basilari del software (iscrizione, accesso)
+ * 2 - Metodo logicaMenu per la realizzazione delle connessioni tra i vari menu'
  */
 public class GestoreMenu implements Serializable 
 {
@@ -265,6 +265,7 @@ public class GestoreMenu implements Serializable
 	        	        		break;
 	        	    }
     	    		    
+    				af.decadenzaFruitore();
     	    		break;
     	        }
 
@@ -285,6 +286,7 @@ public class GestoreMenu implements Serializable
 								break;
 					}
 
+					af.decadenzaFruitore();
 					break;
 				}
 
@@ -312,6 +314,7 @@ public class GestoreMenu implements Serializable
 								break;
 					}
 
+					af.decadenzaFruitore();
 					break;
 				}
 
@@ -338,6 +341,7 @@ public class GestoreMenu implements Serializable
 								break;
 					}
 
+					af.decadenzaFruitore();
 					break;
 				}
 
@@ -365,6 +369,7 @@ public class GestoreMenu implements Serializable
 								break;
 					}
 
+					af.decadenzaFruitore();
 					break;
 				}
 
@@ -383,6 +388,7 @@ public class GestoreMenu implements Serializable
 								break;
 					}
 
+					af.decadenzaFruitore();
 					break;
 				}
 

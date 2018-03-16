@@ -1,4 +1,4 @@
-package it.ing.sw.v1;
+package logica_1;
 
 import java.io.Serializable;
 

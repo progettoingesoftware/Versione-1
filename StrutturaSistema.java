@@ -1,6 +1,8 @@
-package it.ing.sw.v1;
+package interazione_1;
 
 import java.io.Serializable;
+
+import logica_1.*;
 
 /**
  * Qusta classe contiene dei metodi per la creazione della struttura preimpostata di alcuni aspetti del sistema

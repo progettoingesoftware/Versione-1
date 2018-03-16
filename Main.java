@@ -1,8 +1,9 @@
-package it.ing.sw.v1;
+package interazione_1;
 
 import java.io.File;
 
-import it.ing.sw.ServizioFile;
+import logica_1.*;
+import utility.ServizioFile;
 
 public class Main 
 {
