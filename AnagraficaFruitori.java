@@ -38,18 +38,16 @@ public class AnagraficaFruitori extends Anagrafica implements Serializable
 	}
 
 	/**
-	 * Metodo che verifica se il fruitore che intende iscriversi ha
-	 * contemporaneamente lo stesso nome, lo stesso cognome e la stessa data di
-	 * nascita di almeno uno dei fruitori già iscritti
+	 * Metodo che verifica se il fruitore che intende iscriversi e' in realta' gia' iscritto all'applicazione
 	 * 
 	 * Pre : elenco != null
 	 * 
-	 * @param n : nome del nuovo fruitore
-	 * @param c : cognome del nuovo fruitore
-	 * @param dn : data di nascita del nuovo fruitore
-	 * @return boolean : true se le condizioni di uguaglianza sono verificate
+	 * @param n : nome del fruitore
+	 * @param c : cognome del fruitore
+	 * @param dn : data di nascita del fruitore
+	 * @return boolean : true se il fruitore con nome n, cognome c e data di nascita dn e' in realta' gia' iscritto
 	 */
-	public boolean verificaOmonimiaFruitori(String n, String c, LocalDate dn) 
+	public boolean verificaPresenza(String n, String c, LocalDate dn) 
 	{
 		for (int i = 0; i < elenco.size(); i++) 
 		{
